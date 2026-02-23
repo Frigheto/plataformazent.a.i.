@@ -5241,74 +5241,34 @@ footer {
 }
 
 /* ============================================================
-   Floating Help Card
+   Floating Help Button
    ============================================================ */
 .m-floating-help {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
     z-index: 1000;
-    animation: slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.m-floating-help-inner {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
-    min-width: 320px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.m-floating-help-icon {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 8px 32px rgba(37, 99, 235, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.m-floating-help-content {
-    flex: 1;
-    color: #ffffff;
-}
-
-.m-floating-help-content h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin: 0 0 0.25rem 0;
-    color: #ffffff;
-}
-
-.m-floating-help-content p {
-    font-size: 0.875rem;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.m-floating-help-btn {
-    flex-shrink: 0;
-    display: inline-block;
-    padding: 0.625rem 1.25rem;
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    font-weight: 600;
     transition: var(--transition);
-    white-space: nowrap;
+    animation: slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+               pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.m-floating-help-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
+.m-floating-help:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.5);
+}
+
+.m-floating-help:active {
+    transform: scale(0.95);
 }
 
 @keyframes slideInUp {
@@ -5324,10 +5284,10 @@ footer {
 
 @keyframes pulse {
     0%, 100% {
-        opacity: 1;
+        box-shadow: 0 8px 32px rgba(37, 99, 235, 0.4);
     }
     50% {
-        opacity: 0.7;
+        box-shadow: 0 8px 32px rgba(37, 99, 235, 0.6);
     }
 }
 
