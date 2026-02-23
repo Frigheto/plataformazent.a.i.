@@ -17,6 +17,13 @@
     <header class="m-header" id="m-header">
         <div class="m-header-inner">
             <div class="m-header-left">
+                <a href="index.html" class="m-btn m-btn--ghost" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; margin-right: 1rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Voltar
+                </a>
                 <a href="members.html" class="m-logo">ZENT<span>A.I.</span></a>
                 <nav class="m-nav">
                     <a href="#inicio" class="m-nav-link active" data-tab="inicio">Início</a>
@@ -86,6 +93,63 @@
         </div>
     </section>
 
+
+    <!-- ===== AGENDAMENTO DE CALL ===== -->
+    <section class="m-booking-section" id="m-booking-section">
+        <div class="m-booking-container">
+            <div class="m-booking-content">
+                <div class="m-booking-header">
+                    <div class="m-booking-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <path d="M12 7v5h3"></path>
+                            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="m-booking-title">Configure sua plataforma com um especialista</h2>
+                        <p class="m-booking-subtitle">Agende uma call para receber orientações personalizadas e ativar todos os recursos disponíveis no seu plano.</p>
+                    </div>
+                </div>
+
+                <div class="m-booking-status" id="m-booking-status">
+                    <!-- Status será preenchido por JavaScript -->
+                </div>
+
+                <a href="https://link.easyworkhub.com.br/widget/booking/NUFajWLkKkScPcVtQ88b" target="_blank" rel="noopener noreferrer" class="m-btn m-btn--primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z"></path>
+                    </svg>
+                    Agendar minha call
+                </a>
+            </div>
+
+            <div class="m-booking-benefits">
+                <div class="m-booking-benefit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #10b981;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Configuração personalizada</span>
+                </div>
+                <div class="m-booking-benefit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #10b981;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Suporte ao vivo</span>
+                </div>
+                <div class="m-booking-benefit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: #10b981;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Acesso a todos os recursos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MODAL DE AGENDAMENTO (Removido — usando link direto) ===== -->
+    <!-- Link direto para agendamento: https://link.easyworkhub.com.br/widget/booking/NUFajWLkKkScPcVtQ88b -->
+
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <main class="m-main">
 
@@ -152,66 +216,119 @@
             </div>
         </section>
 
-        <!-- ───── ROW: Acesso rápido ───── -->
-        <section class="m-row m-plan-content" data-page="inicio">
+        <!-- ───── ROW: Progresso de Onboarding ───── -->
+        <section class="m-row m-plan-content m-onboarding-progress" id="m-onboarding-progress" style="display:none" data-page="inicio">
+            <div class="m-progress-header">
+                <h2 class="m-row-title">Sua configuração está em progresso</h2>
+                <p class="m-progress-subtitle">Complete os itens abaixo para aproveitar todos os recursos do seu plano</p>
+            </div>
+
+            <!-- PROGRESS BAR -->
+            <div class="m-progress-card">
+                <div class="m-progress-info">
+                    <h3>Progresso da plataforma</h3>
+                    <span class="m-progress-percent" id="m-progress-percent">0%</span>
+                </div>
+                <div class="m-progress-bar">
+                    <div class="m-progress-fill" id="m-progress-fill" style="width: 0%"></div>
+                </div>
+                <p class="m-progress-message" id="m-progress-message">Comece completando as tarefas abaixo</p>
+            </div>
+
+            <!-- CHECKLIST -->
+            <div class="m-checklist-card">
+                <h3>Checklist de Configuração</h3>
+                <ul class="m-checklist" id="m-checklist">
+                    <!-- Itens preenchidos por JavaScript -->
+                </ul>
+            </div>
+
+            <!-- PRÓXIMOS PASSOS -->
+            <div class="m-next-steps-section">
+                <h3>Próximos Passos Recomendados</h3>
+                <div class="m-next-steps-grid" id="m-next-steps-grid">
+                    <!-- Passos recomendados preenchidos por JavaScript -->
+                </div>
+            </div>
+
+            <!-- SUPORTE -->
+            <div class="m-onboarding-support">
+                <div class="m-support-icon">💬</div>
+                <div>
+                    <h4>Precisa de ajuda?</h4>
+                    <p>Nossa equipe está disponível para auxiliar você no processo de configuração</p>
+                </div>
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="m-btn m-btn--primary">Falar com suporte</a>
+            </div>
+        </section>
+
+        <!-- ───── ROW: Acesso rápido (Novo Design) ───── -->
+        <section class="m-row m-plan-content m-quick-access-new" data-page="inicio">
             <h2 class="m-row-title">Acesso rápido</h2>
-            <div class="m-cards-track">
+            <div class="m-quick-access-grid-new">
 
                 <!-- Plataforma -->
-                <a href="https://app.zentia.com.br" target="_blank" rel="noopener noreferrer"
-                    class="m-feature-card m-feature-card--platform">
-                    <div class="m-feature-card-thumb">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5">
-                            <rect x="3" y="3" width="7" height="7"></rect>
-                            <rect x="14" y="3" width="7" height="7"></rect>
-                            <rect x="14" y="14" width="7" height="7"></rect>
-                            <rect x="3" y="14" width="7" height="7"></rect>
-                        </svg>
+                <a href="https://app.zentia.com.br" target="_blank" rel="noopener noreferrer" class="m-quick-access-card">
+                    <div class="m-quick-access-card-left">
+                        <div class="m-quick-access-icon" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </div>
+                        <div class="m-quick-access-content">
+                            <span class="m-quick-access-label">PLATAFORMA</span>
+                            <h3 class="m-quick-access-title">ZENT A.I.</h3>
+                            <p class="m-quick-access-desc">Acesse CRM, IA, automações e mais</p>
+                        </div>
                     </div>
-                    <div class="m-feature-card-body">
-                        <span class="m-feature-card-label">Plataforma</span>
-                        <strong class="m-feature-card-name">ZENT A.I.</strong>
-                        <p class="m-feature-card-desc">Acesse CRM, IA, automações e mais</p>
-                    </div>
-                    <div class="m-feature-card-arrow">→</div>
+                    <svg class="m-quick-access-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                 </a>
 
                 <!-- WhatsApp -->
-                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer"
-                    class="m-feature-card m-feature-card--whatsapp">
-                    <div class="m-feature-card-thumb">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                            <path
-                                d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.112 1.529 5.836L0 24l6.336-1.5A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.012-1.374l-.36-.214-3.727.977.996-3.647-.235-.374A9.818 9.818 0 1 1 12 21.818z" />
-                        </svg>
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="m-quick-access-card">
+                    <div class="m-quick-access-card-left">
+                        <div class="m-quick-access-icon" style="background: linear-gradient(135deg, #25d366 0%, #20ba58 100%);">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                            </svg>
+                        </div>
+                        <div class="m-quick-access-content">
+                            <span class="m-quick-access-label">SUPORTE</span>
+                            <h3 class="m-quick-access-title">WhatsApp</h3>
+                            <p class="m-quick-access-desc">Fale com nossa equipe agora</p>
+                        </div>
                     </div>
-                    <div class="m-feature-card-body">
-                        <span class="m-feature-card-label">Suporte</span>
-                        <strong class="m-feature-card-name">WhatsApp</strong>
-                        <p class="m-feature-card-desc">Fale com nossa equipe agora</p>
-                    </div>
-                    <div class="m-feature-card-arrow">→</div>
+                    <svg class="m-quick-access-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                 </a>
 
                 <!-- E-mail -->
-                <a href="mailto:suporte@zent.com.br" class="m-feature-card m-feature-card--email">
-                    <div class="m-feature-card-thumb">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
+                <a href="mailto:suporte@zent.com.br" class="m-quick-access-card">
+                    <div class="m-quick-access-card-left">
+                        <div class="m-quick-access-icon" style="background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </div>
+                        <div class="m-quick-access-content">
+                            <span class="m-quick-access-label">SUPORTE</span>
+                            <h3 class="m-quick-access-title">E-mail</h3>
+                            <p class="m-quick-access-desc">suporte@zent.com.br</p>
+                        </div>
                     </div>
-                    <div class="m-feature-card-body">
-                        <span class="m-feature-card-label">Suporte</span>
-                        <strong class="m-feature-card-name">E-mail</strong>
-                        <p class="m-feature-card-desc">suporte@zent.com.br</p>
-                    </div>
-                    <div class="m-feature-card-arrow">→</div>
+                    <svg class="m-quick-access-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                 </a>
 
             </div>
@@ -278,108 +395,313 @@
             </div>
         </section>
 
-        <!-- ───── ROW: Tutoriais ───── -->
+        <!-- ───── ROW: Tutoriais por Ferramenta ───── -->
         <section class="m-row m-plan-content" id="ajuda" data-page="tutoriais">
-            <h2 class="m-row-title">Implemente seu projeto agora — Veja como</h2>
-            <div class="m-video-track" id="m-video-track">
+            <h2 class="m-row-title">Tutoriais por ferramenta</h2>
+            <p class="m-row-subtitle">Aprenda passo a passo como usar cada recurso da plataforma ZENT A.I.</p>
 
-                <div class="m-video-card" data-min-plan="starter">
-                    <div class="m-video-thumb m-video-thumb--1">
-                        <div class="m-play-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </div>
-                        <span class="m-video-duration">12:30</span>
+            <!-- ═══ SEÇÃO 1: CRM ═══ -->
+            <div class="m-tool-section" data-min-plan="starter">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
                     </div>
-                    <div class="m-video-info">
-                        <span class="m-video-ep">Aula 01</span>
-                        <h4>Primeiros passos na plataforma</h4>
-                        <p>Como fazer login, navegar e configurar seu perfil inicial.</p>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">CRM</h3>
+                        <p class="m-tool-desc">Organize seus contatos e automatize vendas</p>
                     </div>
+                    <span class="m-tool-badge">Starter+</span>
                 </div>
 
-                <div class="m-video-card" data-min-plan="starter">
-                    <div class="m-video-thumb m-video-thumb--2">
-                        <div class="m-play-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="starter" data-category="crm">
+                        <div class="m-video-thumb m-video-thumb--crm-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">12:30</span>
                         </div>
-                        <span class="m-video-duration">18:45</span>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Aula 01</span>
+                            <h4>Primeiros passos na plataforma</h4>
+                            <p>Como fazer login, navegar e configurar seu perfil inicial.</p>
+                        </div>
                     </div>
-                    <div class="m-video-info">
-                        <span class="m-video-ep">Aula 02</span>
-                        <h4>Configurando o CRM</h4>
-                        <p>Importar leads, criar pipelines e automatizar follow-ups.</p>
+
+                    <div class="m-video-card" data-min-plan="starter" data-category="crm">
+                        <div class="m-video-thumb m-video-thumb--crm-2">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">18:45</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Aula 02</span>
+                            <h4>Configurando o CRM</h4>
+                            <p>Importar leads, criar pipelines e automatizar follow-ups.</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="m-video-card" data-min-plan="basico">
-                    <div class="m-video-thumb m-video-thumb--3">
-                        <div class="m-play-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </div>
-                        <span class="m-video-duration">22:10</span>
-                    </div>
-                    <div class="m-video-info">
-                        <span class="m-video-ep">Aula 03</span>
-                        <h4>Conectando o WhatsApp</h4>
-                        <p>Integração com WhatsApp Business e automação de mensagens.</p>
-                    </div>
-                </div>
-
-                <div class="m-video-card" data-min-plan="basico">
-                    <div class="m-video-thumb m-video-thumb--4">
-                        <div class="m-play-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </div>
-                        <span class="m-video-duration">15:20</span>
-                    </div>
-                    <div class="m-video-info">
-                        <span class="m-video-ep">Aula 04</span>
-                        <h4>Google Agenda integrada</h4>
-                        <p>Sincronizar agenda, criar eventos automáticos e lembretes.</p>
-                    </div>
-                </div>
-
-                <div class="m-video-card" data-min-plan="profissional">
-                    <div class="m-video-thumb m-video-thumb--5">
-                        <div class="m-play-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </div>
-                        <span class="m-video-duration">28:00</span>
-                    </div>
-                    <div class="m-video-info">
-                        <span class="m-video-ep">Aula 05</span>
-                        <h4>Agente de IA — SDR</h4>
-                        <p>Configurar o agente para qualificar e converter leads automaticamente.</p>
-                    </div>
-                </div>
-
-                <div class="m-video-card" data-min-plan="premium">
-                    <div class="m-video-thumb m-video-thumb--6">
-                        <div class="m-play-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </div>
-                        <span class="m-video-duration">19:55</span>
-                    </div>
-                    <div class="m-video-info">
-                        <span class="m-video-ep">Aula 06</span>
-                        <h4>Redes sociais e marketing</h4>
-                        <p>Planejamento, agendamento e disparo de conteúdo automatizado.</p>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- ═══ SEÇÃO 2: OMNICHANNEL ═══ -->
+            <div class="m-tool-section" data-min-plan="basico">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.64 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.63a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">Omnichannel</h3>
+                        <p class="m-tool-desc">Unifique WhatsApp, Instagram, Facebook e Email</p>
+                    </div>
+                    <span class="m-tool-badge">Básico+</span>
+                </div>
+
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="basico" data-category="omnichannel">
+                        <div class="m-video-thumb m-video-thumb--omni-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">22:10</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Aula 03</span>
+                            <h4>Conectando o WhatsApp</h4>
+                            <p>Integração com WhatsApp Business e automação de mensagens.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SEÇÃO 3: AGENDA ═══ -->
+            <div class="m-tool-section" data-min-plan="basico">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">Agenda</h3>
+                        <p class="m-tool-desc">Sincronize com Google Calendar e gerencie compromissos</p>
+                    </div>
+                    <span class="m-tool-badge">Básico+</span>
+                </div>
+
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="basico" data-category="agenda">
+                        <div class="m-video-thumb m-video-thumb--agenda-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">15:20</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Aula 04</span>
+                            <h4>Google Agenda integrada</h4>
+                            <p>Sincronizar agenda, criar eventos automáticos e lembretes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SEÇÃO 4: LEADS ═══ -->
+            <div class="m-tool-section" data-min-plan="starter">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">Leads</h3>
+                        <p class="m-tool-desc">Capture, qualifique e nutra seus prospectos</p>
+                    </div>
+                    <span class="m-tool-badge">Starter+</span>
+                </div>
+
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="starter" data-category="leads">
+                        <div class="m-video-thumb m-video-thumb--leads-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">14:00</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Tutorial</span>
+                            <h4>Captura de leads com formulários</h4>
+                            <p>Crie formulários que convertem visitantes em prospects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SEÇÃO 5: ANÁLISE ═══ -->
+            <div class="m-tool-section" data-min-plan="profissional">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">Análise</h3>
+                        <p class="m-tool-desc">Visualize dashboards e relatórios detalhados</p>
+                    </div>
+                    <span class="m-tool-badge">Profissional+</span>
+                </div>
+
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="profissional" data-category="analise">
+                        <div class="m-video-thumb m-video-thumb--analise-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">16:30</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Tutorial</span>
+                            <h4>Dashboard de vendas</h4>
+                            <p>Monitore KPIs e acompanhe o desempenho do seu time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SEÇÃO 6: INTEGRAÇÕES ═══ -->
+            <div class="m-tool-section" data-min-plan="profissional">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="6" cy="5" r="3"></circle>
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="19" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="9" y1="5" x2="15" y2="5"></line>
+                            <line x1="9" y1="19" x2="15" y2="19"></line>
+                            <line x1="6" y1="8" x2="6" y2="16"></line>
+                            <line x1="18" y1="8" x2="18" y2="16"></line>
+                        </svg>
+                    </div>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">Integrações</h3>
+                        <p class="m-tool-desc">Conecte com APIs, Zapier, Make e outras ferramentas</p>
+                    </div>
+                    <span class="m-tool-badge">Profissional+</span>
+                </div>
+
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="profissional" data-category="integracao">
+                        <div class="m-video-thumb m-video-thumb--integracao-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">19:15</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Tutorial</span>
+                            <h4>Integrar com Zapier</h4>
+                            <p>Automatize workflows conectando com milhares de aplicações.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SEÇÃO 7: AGENTE IA ═══ -->
+            <div class="m-tool-section" data-min-plan="profissional">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+                        </svg>
+                    </div>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">Agente IA</h3>
+                        <p class="m-tool-desc">Qualifique leads e atenda clientes automaticamente</p>
+                    </div>
+                    <span class="m-tool-badge">Profissional+</span>
+                </div>
+
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="profissional" data-category="ia">
+                        <div class="m-video-thumb m-video-thumb--ia-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">28:00</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Aula 05</span>
+                            <h4>Agente de IA — SDR</h4>
+                            <p>Configurar o agente para qualificar e converter leads automaticamente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SEÇÃO 8: SUPORTE ═══ -->
+            <div class="m-tool-section" data-min-plan="starter">
+                <div class="m-tool-header">
+                    <div class="m-tool-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="m-tool-content">
+                        <h3 class="m-tool-title">Suporte</h3>
+                        <p class="m-tool-desc">FAQ, Troubleshooting e dúvidas frequentes</p>
+                    </div>
+                    <span class="m-tool-badge">Para todos</span>
+                </div>
+
+                <div class="m-video-track">
+                    <div class="m-video-card" data-min-plan="starter" data-category="suporte">
+                        <div class="m-video-thumb m-video-thumb--suporte-1">
+                            <div class="m-play-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="m-video-duration">19:55</span>
+                        </div>
+                        <div class="m-video-info">
+                            <span class="m-video-ep">Aula 06</span>
+                            <h4>Redes sociais e marketing</h4>
+                            <p>Planejamento, agendamento e disparo de conteúdo automatizado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- ───── ROW: Minha conta ───── -->
@@ -488,6 +810,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/members-page.js"></script>
+    <script src="js/calendar-booking.js"></script>
+    <script src="js/onboarding-progress.js"></script>
 </body>
 
 </html>
