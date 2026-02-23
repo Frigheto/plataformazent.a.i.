@@ -47,6 +47,10 @@
         var userLevel = PLAN_LEVEL[_currentUserPlan] || 0;
         var noPlanEl = document.getElementById('m-no-plan');
         var planContents = document.querySelectorAll('.m-plan-content');
+        var mainEl = document.querySelector('.m-main');
+
+        // Define atributo de plano atual no .m-main para CSS (bloqueio de seções)
+        if (mainEl) mainEl.setAttribute('data-current-plan', _currentUserPlan || 'none');
 
         if (userLevel === 0) {
             // Sem plano: exibe tela de upsell, oculta todo o conteúdo de plano
@@ -58,6 +62,18 @@
         // Com plano: oculta upsell, exibe conteúdo de plano
         if (noPlanEl) noPlanEl.style.display = 'none';
         planContents.forEach(function (el) { el.style.display = ''; });
+
+        // Aplica plan gating nas SEÇÕES DE FERRAMENTAS
+        document.querySelectorAll('.m-tool-section[data-min-plan]').forEach(function (section) {
+            var minPlan = section.getAttribute('data-min-plan');
+            var minLevel = PLAN_LEVEL[minPlan] || 0;
+
+            if (userLevel < minLevel) {
+                section.classList.add('m-tool-locked');
+            } else {
+                section.classList.remove('m-tool-locked');
+            }
+        });
 
         // Bloqueia vídeos fora do nível do usuário
         document.querySelectorAll('.m-video-card[data-min-plan]').forEach(function (card) {
@@ -283,6 +299,17 @@
                 window.zentAuth.signOut();
             });
         }
+
+        // ------ Tool Sections Accordion ------
+        var toolHeaders = document.querySelectorAll('.m-tool-header');
+        toolHeaders.forEach(function (header) {
+            header.addEventListener('click', function () {
+                var section = header.closest('.m-tool-section');
+                if (section) {
+                    section.classList.toggle('collapsed');
+                }
+            });
+        });
 
     });
 
