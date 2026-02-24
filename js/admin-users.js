@@ -1,14 +1,42 @@
 /**
- * admin-users.js — Gerenciamento de usuários
+ * admin-users.js — Gerenciamento de usuários (REFATORADO)
  * CRUD de usuários e edição de planos
+ * CREDENCIAIS: Carregadas de window.ZENT_CONFIG (definido em config.js)
  */
 
 (function () {
     'use strict';
 
-    const SUPABASE_URL = 'https://tohqjcsrgfvlotnkcmqy.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_KNJ58eZVQ2dlelSph-JNhA_6iYaHUbn';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // Aguarda Supabase carregar
+    let supabase = null;
+    let supabaseReady = false;
+
+    const waitForSupabase = setInterval(async () => {
+        if (window.ZENT_CONFIG && window.ZENT_CONFIG.getSupabaseClient) {
+            supabase = window.ZENT_CONFIG.getSupabaseClient();
+            if (supabase) {
+                supabaseReady = true;
+                clearInterval(waitForSupabase);
+                console.log('[Admin Users] ✅ Supabase pronto');
+
+                // Inicializa quando Supabase está pronto
+                if (document.readyState === 'loading') {
+                    console.log('[Admin Users] DOM ainda carregando...');
+                } else {
+                    console.log('[Admin Users] DOM já carregado, inicializando...');
+                    await initializeUsers();
+                }
+            }
+        }
+    }, 100);
+
+    // Timeout
+    setTimeout(() => {
+        if (!supabaseReady) {
+            console.error('[Admin Users] ❌ Supabase não inicializou em 5s');
+            document.body.innerHTML = '<div style="padding: 20px; color: red;">Erro: Supabase não carregou. Recarregue a página.</div>';
+        }
+    }, 5000);
 
     let allUsers = [];
     let currentPage = 0;
@@ -23,36 +51,63 @@
         '': 'Sem plano'
     };
 
-    // DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', async function () {
+    // Inicializar usuários
+    const initializeUsers = async () => {
+        console.log('[Admin Users] Inicializando...');
+
         if (!window.adminAuth.isAuthenticated()) {
+            console.log('[Admin Users] Não autenticado, redirecionando...');
             window.location.href = '../admin-login.html';
             return;
         }
 
         const adminSession = window.adminAuth.getSession();
-        document.getElementById('admin-user-name').textContent = adminSession.name || 'Admin';
+        if (document.getElementById('admin-user-name')) {
+            document.getElementById('admin-user-name').textContent = adminSession.name || 'Admin';
+        }
 
         // Carrega usuários
         await loadUsers();
 
         // Event listeners
-        document.getElementById('filter-search').addEventListener('input', filterUsers);
-        document.getElementById('filter-plan').addEventListener('change', filterUsers);
-        document.getElementById('users-prev-btn').addEventListener('click', previousPage);
-        document.getElementById('users-next-btn').addEventListener('click', nextPage);
-    });
+        const filterSearch = document.getElementById('filter-search');
+        const filterPlan = document.getElementById('filter-plan');
+        const prevBtn = document.getElementById('users-prev-btn');
+        const nextBtn = document.getElementById('users-next-btn');
+
+        if (filterSearch) filterSearch.addEventListener('input', filterUsers);
+        if (filterPlan) filterPlan.addEventListener('change', filterUsers);
+        if (prevBtn) prevBtn.addEventListener('click', previousPage);
+        if (nextBtn) nextBtn.addEventListener('click', nextPage);
+
+        console.log('[Admin Users] ✅ Inicialização completa');
+    };
+
+    // DOMContentLoaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', async function () {
+            console.log('[Admin Users] DOMContentLoaded disparado');
+            if (supabaseReady) {
+                await initializeUsers();
+            }
+        });
+    } else {
+        console.log('[Admin Users] DOM já carregado');
+        if (supabaseReady) {
+            initializeUsers();
+        }
+    }
 
     async function loadUsers() {
         try {
             const { data: profiles, error } = await supabase
                 .from('profiles')
-                .select('id, email, full_name, plan, created_at');
+                .select('user_id, email, full_name, plan, created_at');
 
             if (error) throw error;
 
             allUsers = (profiles || []).map(p => ({
-                id: p.id,
+                id: p.user_id,
                 email: p.email || '—',
                 name: p.full_name || 'Sem nome',
                 plan: p.plan || '',

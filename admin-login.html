@@ -64,6 +64,11 @@
 
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <!-- bcryptjs para validação de senha (unpkg é mais confiável) -->
+    <script src="https://unpkg.com/bcryptjs@2.4.3/dist/bcryptjs.min.js"></script>
+    <!-- Config centralizado (DEVE ser carregado ANTES de admin-auth.js) -->
+    <script src="js/config.js"></script>
+    <!-- Auth do admin (depende de config.js) -->
     <script src="js/admin-auth.js"></script>
 </body>
 </html>

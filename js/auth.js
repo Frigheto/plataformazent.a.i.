@@ -16,7 +16,7 @@
     // CREDENCIAIS SUPABASE — substitua com seus valores reais
     // ----------------------------------------------------------------
     var SUPABASE_URL      = 'https://tohqjcsrgfvlotnkcmqy.supabase.co';
-    var SUPABASE_ANON_KEY = 'sb_publishable_KNJ58eZVQ2dlelSph-JNhA_6iYaHUbn';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvaHFqY3NyZ2Z2bG90bmtjbXF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NjY0MjAsImV4cCI6MjA4NzA0MjQyMH0.VinUY79mbTCxulHb6BoXnMPq4Dz1kMYJrgjpOP6aCz4';
 
     // ----------------------------------------------------------------
     // Inicializa o cliente Supabase (disponível via CDN)

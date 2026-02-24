@@ -1,15 +1,44 @@
 /**
- * admin-dashboard.js — Lógica do dashboard administrativo
+ * admin-dashboard.js — Lógica do dashboard administrativo (REFATORADO)
  * Carrega métricas e estatísticas
+ * CREDENCIAIS: Carregadas de window.ZENT_CONFIG (definido em config.js)
  */
 
 (function () {
     'use strict';
 
-    // Inicializa Supabase (NEW PROJECT CREDENTIALS)
-    const SUPABASE_URL = 'https://tohqjcsrgfvlotnkcmqy.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_KNJ58eZVQ2dlelSph-JNhA_6iYaHUbn';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // Aguarda Supabase carregar
+    let supabase = null;
+    let supabaseReady = false;
+
+    const waitForSupabase = setInterval(async () => {
+        if (window.ZENT_CONFIG && window.ZENT_CONFIG.getSupabaseClient) {
+            supabase = window.ZENT_CONFIG.getSupabaseClient();
+            if (supabase) {
+                supabaseReady = true;
+                clearInterval(waitForSupabase);
+                console.log('[Admin Dashboard] ✅ Supabase pronto');
+
+                // Inicializa dashboard quando Supabase está pronto
+                // Se DOM ainda não carregou, será chamado no DOMContentLoaded
+                // Se DOM já carregou, chama direto
+                if (document.readyState === 'loading') {
+                    console.log('[Admin Dashboard] DOM ainda carregando...');
+                } else {
+                    console.log('[Admin Dashboard] DOM já carregado, inicializando...');
+                    await initializeDashboard();
+                }
+            }
+        }
+    }, 100);
+
+    // Timeout
+    setTimeout(() => {
+        if (!supabaseReady) {
+            console.error('[Admin Dashboard] ❌ Supabase não inicializou em 5s');
+            document.body.innerHTML = '<div style="padding: 20px; color: red;">Erro: Supabase não carregou. Recarregue a página.</div>';
+        }
+    }, 5000);
 
     const PLAN_PRICES = {
         'starter': 197,
@@ -18,9 +47,11 @@
         'premium': 997
     };
 
-    // DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', async function () {
-        // Aguarda um pouco para admin-auth.js definir window.adminAuth
+    // Inicializar dashboard quando Supabase estiver pronto
+    const initializeDashboard = async () => {
+        console.log('[Admin Dashboard] Inicializando dashboard...');
+
+        // Aguarda admin-auth.js estar pronto
         let retries = 0;
         while (!window.adminAuth && retries < 10) {
             await new Promise(resolve => setTimeout(resolve, 100));
@@ -29,18 +60,39 @@
 
         // Verifica autenticação
         if (!window.adminAuth || !window.adminAuth.isAuthenticated()) {
-            console.log('[Dashboard] Não autenticado, redirecionando para login');
+            console.log('[Admin Dashboard] Não autenticado, redirecionando para login');
             window.location.href = '../admin-login.html';
             return;
         }
 
         // Mostra nome do admin
         const adminSession = window.adminAuth.getSession();
-        document.getElementById('admin-user-name').textContent = adminSession.name || 'Admin';
+        if (document.getElementById('admin-user-name')) {
+            document.getElementById('admin-user-name').textContent = adminSession.name || 'Admin';
+        }
 
         // Carrega dados do dashboard
         await loadDashboardData();
-    });
+    };
+
+    // Chamar quando o DOM estiver pronto
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', async function () {
+            console.log('[Admin Dashboard] DOMContentLoaded disparado');
+
+            // Se Supabase já está pronto, inicializa logo
+            if (supabaseReady) {
+                console.log('[Admin Dashboard] Supabase já pronto, inicializando...');
+                await initializeDashboard();
+            }
+        });
+    } else {
+        // Se DOM já está pronto (rare case)
+        console.log('[Admin Dashboard] DOM já carregado na inicialização');
+        if (supabaseReady) {
+            initializeDashboard();
+        }
+    }
 
     async function loadDashboardData() {
         try {
@@ -49,7 +101,7 @@
             // Busca todos os perfis de usuários
             const { data: profiles, error } = await supabase
                 .from('profiles')
-                .select('id, plan');
+                .select('user_id, plan');
 
             if (error) {
                 console.error('[Admin Dashboard] Erro na query profiles:', error);

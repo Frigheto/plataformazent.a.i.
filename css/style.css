@@ -44,7 +44,7 @@
     --radius-full: 9999px;
 
     --container: 1200px;
-    --header-h: 72px;
+    --header-h: 80px;
     --section-gap: 6rem;
 
     --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -328,7 +328,10 @@ header.scrolled {
     font-size: 1.4rem;
     font-weight: 800;
     color: var(--text);
-    letter-spacing: -0.03em;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .logo span {

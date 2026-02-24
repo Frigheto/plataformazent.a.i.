@@ -1,14 +1,42 @@
 /**
- * admin-videos.js — Gerenciamento de vídeos
+ * admin-videos.js — Gerenciamento de vídeos (REFATORADO)
  * CRUD de tutoriais
+ * CREDENCIAIS: Carregadas de window.ZENT_CONFIG (definido em config.js)
  */
 
 (function () {
     'use strict';
 
-    const SUPABASE_URL = 'https://tohqjcsrgfvlotnkcmqy.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_KNJ58eZVQ2dlelSph-JNhA_6iYaHUbn';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // Aguarda Supabase carregar
+    let supabase = null;
+    let supabaseReady = false;
+
+    const waitForSupabase = setInterval(async () => {
+        if (window.ZENT_CONFIG && window.ZENT_CONFIG.getSupabaseClient) {
+            supabase = window.ZENT_CONFIG.getSupabaseClient();
+            if (supabase) {
+                supabaseReady = true;
+                clearInterval(waitForSupabase);
+                console.log('[Admin Videos] ✅ Supabase pronto');
+
+                // Inicializa quando Supabase está pronto
+                if (document.readyState === 'loading') {
+                    console.log('[Admin Videos] DOM ainda carregando...');
+                } else {
+                    console.log('[Admin Videos] DOM já carregado, inicializando...');
+                    await initializeVideos();
+                }
+            }
+        }
+    }, 100);
+
+    // Timeout
+    setTimeout(() => {
+        if (!supabaseReady) {
+            console.error('[Admin Videos] ❌ Supabase não inicializou em 5s');
+            document.body.innerHTML = '<div style="padding: 20px; color: red;">Erro: Supabase não carregou. Recarregue a página.</div>';
+        }
+    }, 5000);
 
     let allVideos = [];
     let editingVideoId = null;
@@ -20,19 +48,41 @@
         'premium': 'Premium'
     };
 
-    // DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', async function () {
+    // Inicializar vídeos
+    const initializeVideos = async () => {
+        console.log('[Admin Videos] Inicializando...');
+
         if (!window.adminAuth.isAuthenticated()) {
+            console.log('[Admin Videos] Não autenticado, redirecionando...');
             window.location.href = '../admin-login.html';
             return;
         }
 
         const adminSession = window.adminAuth.getSession();
-        document.getElementById('admin-user-name').textContent = adminSession.name || 'Admin';
+        if (document.getElementById('admin-user-name')) {
+            document.getElementById('admin-user-name').textContent = adminSession.name || 'Admin';
+        }
 
         // Carrega vídeos
         await loadVideos();
-    });
+
+        console.log('[Admin Videos] ✅ Inicialização completa');
+    };
+
+    // DOMContentLoaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', async function () {
+            console.log('[Admin Videos] DOMContentLoaded disparado');
+            if (supabaseReady) {
+                await initializeVideos();
+            }
+        });
+    } else {
+        console.log('[Admin Videos] DOM já carregado');
+        if (supabaseReady) {
+            initializeVideos();
+        }
+    }
 
     async function loadVideos() {
         try {

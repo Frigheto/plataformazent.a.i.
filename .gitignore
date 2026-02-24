@@ -27,3 +27,19 @@ Thumbs.db
 .aios-core/local/
 .claude/settings.local.json
 .aios/install-log.txt
+
+# Backup & Temporary Files
+*.backup*
+ADMIN_SETUP_GUIDE.md
+AGENTS.md.backup*
+ONBOARDING_IMPLEMENTATION.md
+GOOGLE_CALENDAR_INTEGRATION.md
+.env.backup*
+supabase/.temp/
+setup-admin-users.js
+.claude/hooks/
+docs/DEPLOY_EDGE_FUNCTIONS.md
+docs/GOOGLE_CALENDAR_SETUP.md
+docs/ONBOARDING_SETUP.md
+js/onboarding-progress.js
+scripts/
