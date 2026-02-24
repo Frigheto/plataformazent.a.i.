@@ -636,13 +636,16 @@ header.scrolled {
 .cards-carousel-wrapper {
     position: relative;
     width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
     z-index: 5;
     min-height: 300px;
     max-height: 400px;
-    padding: 1.5rem 0 2rem;
+    padding: 1.5rem 2rem 2rem;
 }
 
 .carousel-nav {
@@ -666,11 +669,11 @@ header.scrolled {
 }
 
 .carousel-prev {
-    left: 16px;
+    left: 8px;
 }
 
 .carousel-next {
-    right: 16px;
+    right: 8px;
 }
 
 .carousel-nav:hover {
@@ -688,7 +691,7 @@ header.scrolled {
 .cards-stack {
     width: 100%;
     overflow: hidden;
-    padding: 0 64px;
+    padding: 0 50px;
 }
 
 .cards-track {
