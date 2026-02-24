@@ -110,7 +110,7 @@
                 id: p.user_id,
                 email: p.email || '—',
                 name: p.full_name || 'Sem nome',
-                plan: p.plan || '',
+                plan: (p.plan || '').toLowerCase(), // Normaliza para minúsculo
                 createdAt: p.created_at
             }));
 

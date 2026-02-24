@@ -201,6 +201,8 @@
             // Hero badge: plano + gating
             window.zentAuth.getProfile().then(function (profile) {
                 var plan = (profile && profile.plan) || '';
+                // Normaliza plano para minúsculo (Premium → premium)
+                plan = plan.toLowerCase().trim();
                 var heroBadge = document.getElementById('m-hero-badge');
                 if (heroBadge) heroBadge.textContent = PLAN_LABELS[plan] || 'Membro ZENT A.I.';
 

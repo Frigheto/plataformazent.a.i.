@@ -131,10 +131,12 @@
             };
 
             profiles.forEach(profile => {
-                if (!profile.plan || profile.plan === '') {
+                // Normaliza plano para minúsculo (Premium → premium)
+                const plan = (profile.plan || '').toLowerCase().trim();
+                if (!plan || plan === '') {
                     metrics.byPlan.noPlan++;
                 } else {
-                    metrics.byPlan[profile.plan]++;
+                    metrics.byPlan[plan]++;
                 }
             });
 
