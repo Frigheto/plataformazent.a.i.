@@ -15,19 +15,13 @@ serve(async (req) => {
   try {
     const body = await req.json();
 
-    console.log("[Webhook Asaas] Recebido:", body);
-
-    // Asaas envia essas propriedades:
-    // event: "PAYMENT_CONFIRMED", "PAYMENT_OVERDUE", "PAYMENT_DELETED", etc
-    // payment.externalReference: nosso formato "plan:starter:uid:USER_ID"
-    // payment.status: "CONFIRMED"
+    console.log("Webhook Asaas Recebido:", body);
 
     const event = body.event;
     const payment = body.payment;
 
-    // Só processa pagamentos confirmados
     if (event !== "PAYMENT_CONFIRMED" || payment.status !== "CONFIRMED") {
-      console.log("[Webhook Asaas] Ignorando evento:", event);
+      console.log("Webhook Asaas Ignorando evento:", event);
       return new Response(
         JSON.stringify({ message: "Event ignored", event }),
         { status: 200 }
@@ -36,32 +30,30 @@ serve(async (req) => {
 
     const externalRef = payment.externalReference;
     if (!externalRef || !externalRef.includes("plan:")) {
-      console.warn("[Webhook Asaas] externalReference inválido:", externalRef);
+      console.warn("Webhook Asaas externalReference invalido:", externalRef);
       return new Response(
         JSON.stringify({ error: "Invalid externalReference" }),
         { status: 400 }
       );
     }
 
-    // Parse: "plan:starter:uid:8d1589f9-d94a-42bc-b8da-0185286234e"
     const parts = externalRef.split(":");
     if (parts.length < 4) {
-      console.warn("[Webhook Asaas] externalReference mal formatado:", externalRef);
+      console.warn("Webhook Asaas externalReference malformatted:", externalRef);
       return new Response(
         JSON.stringify({ error: "Invalid externalReference format" }),
         { status: 400 }
       );
     }
 
-    const plan = parts[1]; // "starter", "basico", "profissional", "premium"
-    const userId = parts.slice(3).join(":"); // UUID do usuário (pode ter ":" em alguns contextos)
+    const plan = parts[1];
+    const userId = parts.slice(3).join(":");
 
-    console.log(`[Webhook Asaas] Plan: ${plan}, User ID: ${userId}`);
+    console.log("Webhook Asaas Plan:", plan, "User ID:", userId);
 
-    // Validar plano
     const validPlans = ["starter", "basico", "profissional", "premium"];
     if (!validPlans.includes(plan)) {
-      console.warn("[Webhook Asaas] Plano inválido:", plan);
+      console.warn("Webhook Asaas Plan invalido:", plan);
       return new Response(
         JSON.stringify({ error: "Invalid plan" }),
         { status: 400 }
@@ -82,7 +74,7 @@ serve(async (req) => {
       .select();
 
     if (error) {
-      console.error("[Webhook Asaas] Erro ao atualizar plano:", error);
+      console.error("Webhook Asaas Erro ao atualizar plano:", error);
       return new Response(
         JSON.stringify({ error: "Failed to update plan", details: error }),
         { status: 500 }
@@ -90,14 +82,14 @@ serve(async (req) => {
     }
 
     if (!data || data.length === 0) {
-      console.warn("[Webhook Asaas] Usuário não encontrado:", userId);
+      console.warn("Webhook Asaas Usuario nao encontrado:", userId);
       return new Response(
         JSON.stringify({ error: "User not found" }),
         { status: 404 }
       );
     }
 
-    console.log("[Webhook Asaas] ✅ Plano atualizado com sucesso:", {
+    console.log("Webhook Asaas Plano atualizado com sucesso:", {
       userId,
       plan,
       payment_id: payment.id,
@@ -127,7 +119,7 @@ serve(async (req) => {
       { status: 200 }
     );
   } catch (error) {
-    console.error("[Webhook Asaas] Erro geral:", error);
+    console.error("Webhook Asaas Erro geral:", error);
     return new Response(
       JSON.stringify({
         error: "Internal server error",
