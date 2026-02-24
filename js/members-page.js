@@ -208,6 +208,18 @@
                 // Isso define _currentUserPlan e garante que o upsell seja exibido/ocultado corretamente
                 applyPlanGating(plan);
 
+                // Desabilita botão de booking se sem plano
+                var bookingBtn = document.getElementById('m-booking-btn');
+                if (bookingBtn) {
+                    if (!plan || plan.trim() === '') {
+                        bookingBtn.disabled = true;
+                        bookingBtn.title = 'Assine um plano para agendar uma call';
+                    } else {
+                        bookingBtn.disabled = false;
+                        bookingBtn.title = 'Clique para agendar uma call com especialista';
+                    }
+                }
+
                 // Conta: dados
                 var accName = document.getElementById('acc-name');
                 var accEmail = document.getElementById('acc-email');
@@ -297,6 +309,27 @@
         if (logoutBtn) {
             logoutBtn.addEventListener('click', function () {
                 window.zentAuth.signOut();
+            });
+        }
+
+        // ------ Booking Call com Especialista ------
+        // Só permite agendar se o usuário tiver um plano ativo
+        var bookingBtn = document.getElementById('m-booking-btn');
+        if (bookingBtn) {
+            bookingBtn.addEventListener('click', function () {
+                // Verifica se usuário tem plano
+                window.zentAuth.getProfile().then(function (profile) {
+                    var userPlan = (profile && profile.plan) || '';
+
+                    if (!userPlan || userPlan.trim() === '') {
+                        // Sem plano - mostra mensagem
+                        alert('Para agendar uma call com nosso especialista, você precisa assinar um plano primeiro. Escolha um plano e conclua o pagamento.');
+                        return;
+                    }
+
+                    // Com plano - abre link de booking em nova aba
+                    window.open('https://link.easyworkhub.com.br/widget/booking/NUFajWLkKkScPcVtQ88b', '_blank', 'noopener,noreferrer');
+                });
             });
         }
 
