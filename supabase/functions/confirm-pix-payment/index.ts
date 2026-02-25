@@ -110,6 +110,7 @@ Deno.serve(async (req: Request) => {
             .from('profiles')
             .update({
               plan: plan,
+              plan_activated_at: new Date().toISOString(),
               updated_at: new Date().toISOString(),
             })
             .eq('id', targetUserId);

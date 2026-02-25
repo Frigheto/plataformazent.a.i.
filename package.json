@@ -11,7 +11,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "supabase": "^2.76.15",
     "terser": "^5.46.0",
     "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.97.0",
+    "pg": "^8.19.0"
   }
 }

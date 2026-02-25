@@ -6,8 +6,8 @@
 (function () {
   'use strict';
 
-  // CONFIGURAÇÃO SUPABASE
-  const SUPABASE_URL = 'https://tohqjcsrgfvlotnkcmqy.supabase.co';
+  // CONFIGURAÇÃO SUPABASE - LOCAL DEVELOPMENT
+  const SUPABASE_URL = 'http://127.0.0.1:54321';
 
   // Dados dos planos
   const PLANS = {
@@ -328,13 +328,45 @@
     const name = document.getElementById('co-name').value.trim();
     const cpf = document.getElementById('co-cpf').value.replace(/\D/g, '');
     const email = document.getElementById('co-email').value.trim();
-    const phone = document.getElementById('co-phone').value.replace(/\D/g, '');
+    let phone = document.getElementById('co-phone').value.replace(/\D/g, '');
+
+    // Garantir que o telefone tem 11 dígitos (DDI 55 + código de área + número)
+    // Se tiver apenas 10 dígitos, adicionar 55 na frente
+    if (phone.length === 10) {
+      phone = '55' + phone;
+    } else if (phone.length === 11 && !phone.startsWith('55')) {
+      phone = '55' + phone;
+    }
 
     console.log('[checkout] Iniciando POST para process-payment...');
+
+    // Obter JWT token para autenticação (apenas em produção)
+    let authHeader = {};
+    const isLocalhost = SUPABASE_URL.includes('127.0.0.1') || SUPABASE_URL.includes('localhost');
+
+    if (!isLocalhost && window.zentAuth && window.zentAuth.getToken) {
+      // Produção: enviar token JWT
+      try {
+        const token = await window.zentAuth.getToken();
+        if (token) {
+          authHeader = {
+            'Authorization': `Bearer ${token}`
+          };
+          console.log('[checkout] JWT token obtido');
+        }
+      } catch (error) {
+        console.warn('[checkout] Aviso ao obter token:', error);
+      }
+    } else if (isLocalhost) {
+      // Localhost: não enviar token (Edge Function local aceita sem autenticação)
+      console.log('[checkout] Modo local - sem autenticação JWT');
+    }
+
     const response = await fetch(`${SUPABASE_URL}/functions/v1/process-payment`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...authHeader
       },
       body: JSON.stringify({
         userId: currentUser.id,
