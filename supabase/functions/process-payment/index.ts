@@ -122,7 +122,14 @@ Deno.serve(async (req: Request) => {
 
       if (!createCustomerRes.ok) {
         const error = await createCustomerRes.text();
-        console.error(`[process-payment] Erro ao criar cliente: ${error}`);
+        console.error(`[process-payment] Erro ao criar cliente (HTTP ${createCustomerRes.status}): ${error}`);
+        // Tentar parsear como JSON para log melhorado
+        try {
+          const errorJson = JSON.parse(error);
+          console.error(`[process-payment] Detalhes do erro Asaas:`, JSON.stringify(errorJson, null, 2));
+        } catch (e) {
+          console.error(`[process-payment] Resposta bruta: ${error}`);
+        }
         return errorResponse('Erro ao criar cliente', 500);
       }
 
@@ -158,7 +165,14 @@ Deno.serve(async (req: Request) => {
 
     if (!createPaymentRes.ok) {
       const error = await createPaymentRes.text();
-      console.error(`[process-payment] Erro Asaas: ${error}`);
+      console.error(`[process-payment] Erro ao criar cobrança (HTTP ${createPaymentRes.status}): ${error}`);
+      // Tentar parsear como JSON para log melhorado
+      try {
+        const errorJson = JSON.parse(error);
+        console.error(`[process-payment] Detalhes do erro Asaas:`, JSON.stringify(errorJson, null, 2));
+      } catch (e) {
+        console.error(`[process-payment] Resposta bruta: ${error}`);
+      }
       return errorResponse('Erro ao criar pagamento', 500);
     }
 
