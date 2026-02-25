@@ -6,6 +6,9 @@
 (function () {
   'use strict';
 
+  // CONFIGURAÇÃO SUPABASE
+  const SUPABASE_URL = 'https://tohqjcsrgfvlotnkcmqy.supabase.co';
+
   // Dados dos planos
   const PLANS = {
     starter: {
@@ -322,7 +325,7 @@
     const email = document.getElementById('co-email').value.trim();
     const phone = document.getElementById('co-phone').value.replace(/\D/g, '');
 
-    const response = await fetch('/functions/v1/process-payment', {
+    const response = await fetch(`${SUPABASE_URL}/functions/v1/process-payment`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -392,7 +395,7 @@
 
     pixPollingInterval = setInterval(async () => {
       try {
-        const response = await fetch(`/functions/v1/confirm-pix-payment?paymentId=${currentPaymentId}&userId=${currentUser.id}`);
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/confirm-pix-payment?paymentId=${currentPaymentId}&userId=${currentUser.id}`);
         const result = await response.json();
 
         if (result.status === 'CONFIRMED') {
