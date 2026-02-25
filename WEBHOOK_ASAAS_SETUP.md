@@ -1,161 +1,111 @@
-# Setup do Webhook Asaas → Supabase
+# 🔗 CONFIGURAÇÃO DE WEBHOOK ASAAS
 
-Este guia configura automaticamente o plano do usuário após pagamento confirmado no Asaas.
+**Status: Pronto para Configuração em Produção**
+**Data:** 25/02/2026
 
-## Arquitetura
+---
+
+## 📋 O QUE É O WEBHOOK
+
+O webhook do Asaas permite que o sistema seja notificado **automaticamente** quando:
+- ✅ Um pagamento é confirmado
+- ❌ Um pagamento falha
+- ⏰ Um pagamento vence
+
+---
+
+## 🚀 PASSO-A-PASSO: CONFIGURAR WEBHOOK
+
+### Passo 1: Obter URL do Webhook
+
+Após fazer deploy no Supabase Cloud, a URL será:
+```
+https://seu-projeto.supabase.co/functions/v1/asaas-webhook
+```
+
+### Passo 2: Acessar Dashboard Asaas
+
+1. Acesse: https://www.asaas.com/login
+2. Vá em **Settings → Webhooks**
+
+### Passo 3: Criar Novo Webhook
+
+1. Clique em **"Novo Webhook"**
+2. Preencha:
+   - **URL:** `https://seu-projeto.supabase.co/functions/v1/asaas-webhook`
+   - **Eventos:**
+     - ✅ `payment.confirmed`
+     - ✅ `payment.failed`
+     - ✅ `payment.overdue`
+
+3. Clique em **Salvar**
+
+### Passo 4: Testar Webhook
+
+1. No Asaas, clique em **"Test"** na webhook criada
+2. Selecione um evento de teste
+3. Verifique logs em: `supabase functions logs asaas-webhook`
+
+---
+
+## 🔄 FLUXO COMPLETO
 
 ```
 Usuário paga no Asaas
     ↓
-Asaas → POST para função Supabase
+Asaas chama webhook automaticamente
     ↓
-Função atualiza plans na tabela profiles
+Edge Function asaas-webhook processa
     ↓
-Usuário vê plano ativo em members.html
+Atualiza status do pagamento
+    ↓
+Atualiza plano do usuário
+    ↓
+✅ Confirmado instantaneamente!
 ```
 
-## Passo 1: Deploy da Edge Function
+---
 
-### Opção A: Deploy via Supabase CLI (Recomendado)
+## 🧪 TESTAR LOCALMENTE
 
 ```bash
-# 1. Instale Supabase CLI (se ainda não tem)
-npm install -g supabase
-
-# 2. Autentique com sua conta Supabase
-supabase login
-
-# 3. Faça deploy da função
-cd /seu/caminho/zentplataformaagência
-supabase functions deploy webhook-asaas --project-id tohqjcsrgfvlotnkcmqy
-
-# Resultado: Você receberá uma URL como:
-# https://tohqjcsrgfvlotnkcmqy.supabase.co/functions/v1/webhook-asaas
-```
-
-### Opção B: Deploy Manual no Supabase Console
-
-1. Vai em: https://app.supabase.com/project/tohqjcsrgfvlotnkcmqy/functions
-2. Clica em "Create a new function"
-3. Nome: `webhook-asaas`
-4. Copia o conteúdo de `supabase/functions/webhook-asaas/index.ts`
-5. Clica em "Deploy"
-
----
-
-## Passo 2: Copie a URL da Função
-
-Após deploy, você receberá uma URL como:
-```
-https://tohqjcsrgfvlotnkcmqy.supabase.co/functions/v1/webhook-asaas
-```
-
-**Guarde essa URL!**
-
----
-
-## Passo 3: Configure no Asaas
-
-1. Acesse: https://sandbox.asaas.com/settings/notifications (ou prod se estiver em produção)
-2. Clica em "Webhooks"
-3. Clica em "Adicionar webhook"
-4. Preencha:
-   - **URL**: Cole a URL da função acima
-   - **Eventos**: Selecione apenas "PAYMENT_CONFIRMED"
-   - **Status da notificação**: Ativo
-
-5. Clica em "Salvar"
-
----
-
-## Passo 4: Teste o Webhook
-
-### Via Asaas Console:
-
-1. Volte em Webhooks
-2. Clique no webhook criado
-3. Clique em "Enviar teste"
-4. Selecione evento "PAYMENT_CONFIRMED"
-5. Clique em "Enviar"
-
-### Via cURL (manual):
-
-```bash
-curl -X POST \
-  https://tohqjcsrgfvlotnkcmqy.supabase.co/functions/v1/webhook-asaas \
+curl -X POST http://127.0.0.1:54321/functions/v1/asaas-webhook \
   -H "Content-Type: application/json" \
   -d '{
-    "event": "PAYMENT_CONFIRMED",
+    "event": "payment.confirmed",
     "payment": {
-      "id": "pay_test_123",
-      "status": "CONFIRMED",
-      "externalReference": "plan:starter:uid:8d1589f9-d94a-42bc-b8da-0185286234e"
+      "id": "test_123",
+      "status": "RECEIVED",
+      "value": 197.00,
+      "customer": "cust_123",
+      "description": "Starter — R$ 197/mês",
+      "externalReference": "plan:starter:uid:user-id"
     }
   }'
 ```
 
----
-
-## Passo 5: Verifique os Logs
-
-1. Acesse: https://app.supabase.com/project/tohqjcsrgfvlotnkcmqy/functions
-2. Clique em `webhook-asaas`
-3. Clique em "Logs"
-4. Você verá as chamadas do webhook
-
----
-
-## Como Funciona
-
-1. **Checkout.html**:
-   - Usuário clica em "Assinar Plano"
-   - `externalReference` é criado: `plan:starter:uid:{USER_ID}`
-   - Redireciona para Asaas com esse reference
-
-2. **Asaas**:
-   - Usuário paga
-   - Status do pagamento muda para "CONFIRMED"
-   - Asaas faz POST para `webhook-asaas`
-
-3. **Supabase Edge Function**:
-   - Recebe POST
-   - Extrai plan e user_id
-   - Atualiza tabela `profiles`: `plan = 'starter'`
-   - Registra no `audit_log`
-
-4. **Members.html**:
-   - Usuário recarrega a página
-   - `getProfile()` lê `plan = 'starter'`
-   - Mostra conteúdo desbloqueado
+Resposta esperada:
+```json
+{
+  "success": true,
+  "event": "payment.confirmed"
+}
+```
 
 ---
 
-## Troubleshooting
+## 📝 CHECKLIST
 
-### Pagamento confirmado mas plano não atualiza
-
-**Verificar:**
-1. Logs da função (acesso acima)
-2. Verifique se `externalReference` está correto em checkout.js
-3. Confirme URL do webhook no Asaas está exata
-
-### Webhook não é chamado
-
-**Verificar:**
-1. Webhook está ativo no Asaas
-2. URL está correta (copie novamente)
-3. Teste manual funciona?
-
-### User not found (404)
-
-**Verificar:**
-1. UUID do usuário está correto
-2. Usuário existe em tabela `profiles`
+- [ ] Edge Function `asaas-webhook` deployada
+- [ ] Webhook criado no dashboard Asaas
+- [ ] URL correta configurada
+- [ ] Eventos selecionados (confirmed, failed, overdue)
+- [ ] Teste manual realizado
+- [ ] Logs verificados
+- [ ] Pagamento de teste confirmado automaticamente
 
 ---
 
-## Referência
+**Webhook pronto para produção! 🎉**
 
-- **Asaas Webhook Docs**: https://docs.asaas.com/#webhook
-- **Supabase Functions**: https://supabase.com/docs/guides/functions
-- **evento PAYMENT_CONFIRMED**: Confirmado que pagamento foi processado
+**Versão:** 1.0 | **Data:** 25/02/2026
