@@ -36,12 +36,16 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
+    // Log para debug
+    console.log('[confirm-pix-payment] Requisição recebida');
+    console.log('[confirm-pix-payment] Headers:', Object.fromEntries(req.headers.entries()));
+
     const url = new URL(req.url);
     const paymentId = url.searchParams.get('paymentId');
     const userId = url.searchParams.get('userId');
 
     console.log(
-      `[confirm-pix-payment] Verificando status: paymentId=${paymentId}`
+      `[confirm-pix-payment] Verificando status: paymentId=${paymentId}, userId=${userId}`
     );
 
     if (!paymentId) {

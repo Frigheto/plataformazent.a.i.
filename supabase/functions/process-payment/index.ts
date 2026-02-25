@@ -66,6 +66,10 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
+    // Log para debug
+    console.log('[process-payment] Requisição recebida');
+    console.log('[process-payment] Headers:', Object.fromEntries(req.headers.entries()));
+
     const body = await req.json() as Record<string, unknown>;
 
     // Validações
@@ -75,6 +79,8 @@ Deno.serve(async (req: Request) => {
     const email = String(body.email || '');
     const phone = String(body.phone || '').replace(/\D/g, '');
     const name = String(body.name || '');
+
+    console.log('[process-payment] Body:', { userId, plan, cpf, email, phone, name });
     const method = String(body.method || '').toLowerCase();
 
     console.log(

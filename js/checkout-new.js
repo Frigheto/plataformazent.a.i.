@@ -327,10 +327,14 @@
 
     // Obter token de autenticação
     const token = await window.zentAuth?.getToken?.();
+    console.log('[checkout] Token obtido:', token ? 'SIM (comprimento: ' + token.length + ')' : 'NÃO');
+
     if (!token) {
+      console.error('[checkout] Erro: Nenhum token disponível. User:', currentUser);
       throw new Error('Autenticação necessária. Faça login novamente.');
     }
 
+    console.log('[checkout] Iniciando POST para process-payment...');
     const response = await fetch(`${SUPABASE_URL}/functions/v1/process-payment`, {
       method: 'POST',
       headers: {
@@ -349,7 +353,15 @@
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      let errorMsg = `HTTP ${response.status}`;
+      try {
+        const errorBody = await response.text();
+        console.error('[checkout] Erro da API:', errorBody);
+        errorMsg += ` - ${errorBody}`;
+      } catch (e) {
+        console.error('[checkout] Erro ao ler resposta:', e);
+      }
+      throw new Error(errorMsg);
     }
 
     const result = await response.json();
