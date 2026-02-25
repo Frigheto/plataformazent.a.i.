@@ -325,21 +325,11 @@
     const email = document.getElementById('co-email').value.trim();
     const phone = document.getElementById('co-phone').value.replace(/\D/g, '');
 
-    // Obter token de autenticação
-    const token = await window.zentAuth?.getToken?.();
-    console.log('[checkout] Token obtido:', token ? 'SIM (comprimento: ' + token.length + ')' : 'NÃO');
-
-    if (!token) {
-      console.error('[checkout] Erro: Nenhum token disponível. User:', currentUser);
-      throw new Error('Autenticação necessária. Faça login novamente.');
-    }
-
     console.log('[checkout] Iniciando POST para process-payment...');
     const response = await fetch(`${SUPABASE_URL}/functions/v1/process-payment`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         userId: currentUser.id,
@@ -416,17 +406,7 @@
 
     pixPollingInterval = setInterval(async () => {
       try {
-        const token = await window.zentAuth?.getToken?.();
-        if (!token) {
-          console.error('[polling] Token ausente');
-          return;
-        }
-
-        const response = await fetch(`${SUPABASE_URL}/functions/v1/confirm-pix-payment?paymentId=${currentPaymentId}&userId=${currentUser.id}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/confirm-pix-payment?paymentId=${currentPaymentId}&userId=${currentUser.id}`);
         const result = await response.json();
 
         if (result.status === 'CONFIRMED') {
