@@ -325,9 +325,18 @@
     const email = document.getElementById('co-email').value.trim();
     const phone = document.getElementById('co-phone').value.replace(/\D/g, '');
 
+    // Obter token de autenticação
+    const token = await window.zentAuth?.getToken?.();
+    if (!token) {
+      throw new Error('Autenticação necessária. Faça login novamente.');
+    }
+
     const response = await fetch(`${SUPABASE_URL}/functions/v1/process-payment`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         userId: currentUser.id,
         plan: currentPlan,
@@ -395,7 +404,17 @@
 
     pixPollingInterval = setInterval(async () => {
       try {
-        const response = await fetch(`${SUPABASE_URL}/functions/v1/confirm-pix-payment?paymentId=${currentPaymentId}&userId=${currentUser.id}`);
+        const token = await window.zentAuth?.getToken?.();
+        if (!token) {
+          console.error('[polling] Token ausente');
+          return;
+        }
+
+        const response = await fetch(`${SUPABASE_URL}/functions/v1/confirm-pix-payment?paymentId=${currentPaymentId}&userId=${currentUser.id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const result = await response.json();
 
         if (result.status === 'CONFIRMED') {

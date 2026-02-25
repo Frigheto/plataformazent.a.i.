@@ -47,6 +47,14 @@
     }
 
     // ----------------------------------------------------------------
+    // getToken — retorna access token ou null
+    // ----------------------------------------------------------------
+    async function getToken() {
+        var session = await getSession();
+        return session ? session.access_token : null;
+    }
+
+    // ----------------------------------------------------------------
     // signUp — cadastro com e-mail e senha
     // ----------------------------------------------------------------
     async function signUp(email, password, name) {
@@ -276,6 +284,7 @@
     window.zentAuth = {
         getSession:           getSession,
         getUser:              getUser,
+        getToken:             getToken,
         getProfile:           getProfile,
         signUp:               signUp,
         signIn:               signIn,
