@@ -103,10 +103,10 @@ Deno.serve(async (req: Request) => {
       { auth: { persistSession: false } }
     );
 
-    // Obter Asaas API Key
-    const asaasApiKey = Deno.env.get('ASAAS_API_KEY');
+    // Obter Asaas API Key (Sandbox ou Produção)
+    const asaasApiKey = Deno.env.get('ASAAS_API_KEY_SANDBOX') || Deno.env.get('ASAAS_API_KEY');
     if (!asaasApiKey) {
-      console.error('[process-payment] ASAAS_API_KEY não configurada');
+      console.error('[process-payment] ASAAS_API_KEY_SANDBOX ou ASAAS_API_KEY não configurada');
       return errorResponse('Configuração interna inválida', 500);
     }
 
