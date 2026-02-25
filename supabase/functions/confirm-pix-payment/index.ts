@@ -53,9 +53,11 @@ Deno.serve(async (req: Request) => {
     }
 
     // Obter Asaas API Key (Sandbox ou Produção)
-    const asaasApiKey = Deno.env.get('ASAAS_API_KEY_SANDBOX') || Deno.env.get('ASAAS_API_KEY');
+    // ⚠️ NOTA: API Key hardcoded para TESTE. Em produção, usar Secrets!
+    const asaasApiKey = '$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmQ0ZTY5ZDc3LWI3MWQtNDQ1YS05NjMxLTZjMzk4N2U2ZmJkOTo6JGFhY2hfMDQ3OTQ2YjMtYjI1MS00MjYwLThlMDktYWZkNTA4NmRiOWVi';
+
     if (!asaasApiKey) {
-      console.error('[confirm-pix-payment] ASAAS_API_KEY_SANDBOX ou ASAAS_API_KEY não configurada');
+      console.error('[confirm-pix-payment] Asaas API Key não disponível');
       return errorResponse('Configuração interna inválida', 500);
     }
 
