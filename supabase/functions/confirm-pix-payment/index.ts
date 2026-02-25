@@ -35,8 +35,8 @@ Deno.serve(async (req: Request) => {
       return errorResponse('paymentId obrigatório', 400);
     }
 
-    // API KEY HARDCODED - TESTANDO
-    const asaasApiKey = '$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmQ0ZTY5ZDc3LWI3MWQtNDQ1YS05NjMxLTZjMzk4N2U2ZmJkOTo6JGFhY2hfMDQ3OTQ2YjMtYjI1MS00MjYwLThlMDktYWZkNTA4NmRiOWVi';
+    // Obter Asaas API Key das Secrets do Supabase
+    const asaasApiKey = Deno.env.get('ASAAS_API_KEY_SANDBOX');
 
     if (!asaasApiKey) {
       console.error('[confirm-pix-payment] API Key não disponível');
