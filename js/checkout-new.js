@@ -320,6 +320,11 @@
   }
 
   async function submitPixPayment() {
+    // Validar autenticação
+    if (!currentUser || !currentUser.id) {
+      throw new Error('Usuário não autenticado. Por favor, faça login novamente.');
+    }
+
     const name = document.getElementById('co-name').value.trim();
     const cpf = document.getElementById('co-cpf').value.replace(/\D/g, '');
     const email = document.getElementById('co-email').value.trim();
@@ -370,9 +375,10 @@
   }
 
   async function submitCardPayment() {
-    // Por enquanto, mostrar mensagem indicando que processaremos o cartão
-    // Em produção, você precisará integrar com tokenização do Asaas
-    alert('Pagamento por cartão será processado aqui');
+    // Pagamento por cartão não está implementado nesta versão
+    // Será adicionado em próxima atualização
+    alert('Pagamento por cartão será disponibilizado em breve. Use PIX por enquanto.');
+    return;
   }
 
   function displayPixConfirmation(qrCode, pixKey) {
@@ -404,8 +410,24 @@
   function startPixPolling() {
     if (pixPollingInterval) clearInterval(pixPollingInterval);
 
+    let pollCount = 0;
+    const MAX_POLLS = 300; // 10 minutos com 2s interval
+
     pixPollingInterval = setInterval(async () => {
       try {
+        pollCount++;
+
+        // Verificar timeout de 10 minutos
+        if (pollCount > MAX_POLLS) {
+          clearInterval(pixPollingInterval);
+          const confirmation = document.getElementById('pix-confirmation');
+          if (confirmation) {
+            confirmation.innerHTML += '<div style="color: #ff6b6b; margin-top: 20px; padding: 15px; background: #ffe0e0; border-radius: 5px;"><strong>⏱️ Tempo esgotado!</strong><br>A espera pelo pagamento ultrapassou 10 minutos. Por favor, tente novamente ou entre em contato com suporte.</div>';
+          }
+          console.error('[checkout] Polling timeout após 10 minutos');
+          return;
+        }
+
         const response = await fetch(`${SUPABASE_URL}/functions/v1/confirm-pix-payment?paymentId=${currentPaymentId}&userId=${currentUser.id}`);
         const result = await response.json();
 
@@ -417,7 +439,7 @@
           }, 2000);
         }
       } catch (error) {
-        console.error('Polling error:', error);
+        console.error('[checkout] Polling error:', error);
       }
     }, 2000); // Poll a cada 2 segundos
   }

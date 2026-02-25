@@ -1,36 +1,10 @@
 /**
  * process-payment — Edge Function
  * Processa pagamento via API Asaas (PIX ou Cartão de Crédito)
- *
- * POST /functions/v1/process-payment
- *
- * Body:
- * {
- *   "userId": "uuid",
- *   "plan": "starter|basico|profissional|premium",
- *   "cpf": "11144477735",
- *   "email": "user@example.com",
- *   "phone": "11999999999",
- *   "name": "João Silva",
- *   "method": "pix|card",
- *   "cardData": { "number", "holder", "expiry", "cvv" } // Se method=card
- * }
- *
- * Response:
- * {
- *   "success": true,
- *   "paymentId": "pay_123456",
- *   "status": "PENDING",
- *   "method": "pix",
- *   "qrCode": "00020126360014...",
- *   "pixCopiaECola": "00020126...",
- *   "expiresAt": "2026-02-26T14:30:00Z"
- * }
  */
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-// Mapeamento de planos para valores Asaas
 const PLAN_VALUES: Record<string, number> = {
   starter: 197,
   basico: 397,
@@ -46,7 +20,6 @@ const PLAN_LABELS: Record<string, string> = {
 };
 
 Deno.serve(async (req: Request) => {
-  // CORS
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 200,
@@ -66,28 +39,18 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    // Log para debug
-    console.log('[process-payment] Requisição recebida');
-    console.log('[process-payment] Headers:', Object.fromEntries(req.headers.entries()));
-
     const body = await req.json() as Record<string, unknown>;
 
-    // Validações
     const userId = String(body.userId || '');
     const plan = String(body.plan || '').toLowerCase();
     const cpf = String(body.cpf || '').replace(/\D/g, '');
     const email = String(body.email || '');
     const phone = String(body.phone || '').replace(/\D/g, '');
     const name = String(body.name || '');
-
-    console.log('[process-payment] Body:', { userId, plan, cpf, email, phone, name });
     const method = String(body.method || '').toLowerCase();
 
-    console.log(
-      `[process-payment] Iniciando pagamento: userId=${userId}, plan=${plan}, method=${method}`
-    );
+    console.log(`[process-payment] Iniciando pagamento: userId=${userId}, plan=${plan}, method=${method}`);
 
-    // Validar entrada
     if (!userId || !plan || !cpf || !email || !phone || !name || !method) {
       return errorResponse('Campos obrigatórios faltando', 400);
     }
@@ -102,26 +65,22 @@ Deno.serve(async (req: Request) => {
 
     const amount = PLAN_VALUES[plan];
 
-    // Conectar Supabase
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL')!,
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
       { auth: { persistSession: false } }
     );
 
-    // Obter Asaas API Key (Sandbox ou Produção)
-    // ⚠️ NOTA: API Key hardcoded para TESTE. Em produção, usar Secrets!
+    // API KEY HARDCODED - TESTANDO
     const asaasApiKey = '$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmQ0ZTY5ZDc3LWI3MWQtNDQ1YS05NjMxLTZjMzk4N2U2ZmJkOTo6JGFhY2hfMDQ3OTQ2YjMtYjI1MS00MjYwLThlMDktYWZkNTA4NmRiOWVi';
 
     if (!asaasApiKey) {
-      console.error('[process-payment] Asaas API Key não disponível');
+      console.error('[process-payment] API Key não disponível');
       return errorResponse('Configuração interna inválida', 500);
     }
 
-    // --- STEP 1: Buscar ou criar cliente no Asaas ---
     let customerId: string | null = null;
 
-    // Procurar cliente por CPF
     const searchCustomersUrl = new URL('https://api.asaas.com/v3/customers');
     searchCustomersUrl.searchParams.set('cpfCnpj', cpf);
 
@@ -142,7 +101,6 @@ Deno.serve(async (req: Request) => {
       }
     }
 
-    // Se não encontrou, criar novo cliente
     if (!customerId) {
       const createCustomerRes = await fetch(
         'https://api.asaas.com/v3/customers',
@@ -165,7 +123,7 @@ Deno.serve(async (req: Request) => {
       if (!createCustomerRes.ok) {
         const error = await createCustomerRes.text();
         console.error(`[process-payment] Erro ao criar cliente: ${error}`);
-        return errorResponse('Erro ao criar cliente no Asaas', 500);
+        return errorResponse('Erro ao criar cliente', 500);
       }
 
       const customerData = (await createCustomerRes.json()) as {
@@ -175,7 +133,6 @@ Deno.serve(async (req: Request) => {
       console.log(`[process-payment] Cliente criado: ${customerId}`);
     }
 
-    // --- STEP 2: Criar cobrança no Asaas ---
     const externalReference = `plan:${plan}:uid:${userId}`;
 
     const paymentPayload: Record<string, unknown> = {
@@ -184,7 +141,7 @@ Deno.serve(async (req: Request) => {
       value: amount,
       dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000)
         .toISOString()
-        .split('T')[0], // Vence em 24h
+        .split('T')[0],
       description: PLAN_LABELS[plan],
       externalReference: externalReference,
       notificationEnabled: true,
@@ -201,7 +158,7 @@ Deno.serve(async (req: Request) => {
 
     if (!createPaymentRes.ok) {
       const error = await createPaymentRes.text();
-      console.error(`[process-payment] Erro ao criar cobrança: ${error}`);
+      console.error(`[process-payment] Erro Asaas: ${error}`);
       return errorResponse('Erro ao criar pagamento', 500);
     }
 
@@ -213,11 +170,8 @@ Deno.serve(async (req: Request) => {
     };
 
     const paymentId = paymentData.id;
-    console.log(
-      `[process-payment] Cobrança criada: ${paymentId}, status: ${paymentData.status}`
-    );
+    console.log(`[process-payment] Cobrança criada: ${paymentId}`);
 
-    // --- STEP 3: Armazenar transação no Supabase ---
     const { error: insertError } = await supabase
       .from('payments')
       .insert({
@@ -232,13 +186,9 @@ Deno.serve(async (req: Request) => {
       });
 
     if (insertError) {
-      console.error(
-        `[process-payment] Erro ao inserir transação: ${insertError.message}`
-      );
-      // Não falha, continua mesmo com erro de BD
+      console.error(`[process-payment] Erro BD: ${insertError.message}`);
     }
 
-    // --- STEP 4: Retornar resposta ---
     const response: Record<string, unknown> = {
       success: true,
       paymentId: paymentId,
