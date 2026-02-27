@@ -4,11 +4,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O que a ZENT A.I. faz — Plataforma de Gestão</title>
-    <meta name="description" content="Descubra tudo o que a ZENT A.I. é capaz de fazer para seu negócio. Gestão, CRM, automação e IA em um único lugar.">
+    <title>Soluções Tecnológicas ZENT A.I. — Plataforma Integrada</title>
+    <meta name="description" content="Descubra as ferramentas tecnológicas que compõem a plataforma ZENT A.I. Dashboard, CRM, automação e IA em um único sistema integrado.">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%232563eb%22/><text y=%22.82em%22 font-size=%2268%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22white%22 x=%2250%22 text-anchor=%22middle%22>Z</text></svg>">
+
+    <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --text-primary: #1a202c;
+            --text-secondary: #475569;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-lighter: #f1f5f9;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: white;
+            color: var(--text-primary);
+        }
+
+        .solutions-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .solutions-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .solutions-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.98;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .solutions-intro {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .intro-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .intro-container h2 {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .intro-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .intro-features li {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .intro-features li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .tools-section {
+            padding: 100px 20px;
+            background: var(--bg-light);
+        }
+
+        .tools-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .tool-header {
+            margin-bottom: 25px;
+        }
+
+        .tool-title {
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .tool-subtitle {
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tool-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .tool-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tool-features li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .tool-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .capabilities-section {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .capabilities-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .capability-box {
+            padding: 35px;
+            background: var(--bg-lighter);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .capability-number {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 45px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .capability-title {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .capability-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .integrations-section {
+            padding: 100px 20px;
+            background: var(--bg-light);
+        }
+
+        .integrations-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .integrations-desc {
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.7;
+        }
+
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .integration-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .architecture-section {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .architecture-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .architecture-box {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-lighter);
+            border-radius: 10px;
+            padding: 50px;
+            border-left: 6px solid var(--primary);
+        }
+
+        .architecture-item {
+            margin-bottom: 35px;
+        }
+
+        .architecture-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .architecture-title {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .architecture-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.98;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .solutions-hero h1 {
+                font-size: 2rem;
+            }
+
+            .solutions-hero p {
+                font-size: 1.05rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .integrations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -33,237 +411,307 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 20px; text-align: center; margin-bottom: 80px;">
+        <!-- Hero -->
+        <section class="solutions-hero">
             <div class="container">
-                <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px;">Tudo que você precisa para crescer</h1>
-                <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.95; line-height: 1.6;">
-                    Uma plataforma integrada que centraliza gestão, CRM, marketing, automação e IA. Tudo funcionando junto para você vender mais com menos esforço.
+                <h1>Plataforma Tecnológica Integrada para Gestão Comercial</h1>
+                <p>Uma arquitetura modular que une dashboard, CRM, automação e inteligência artificial em um único sistema cohesivo e escalável.</p>
+            </div>
+        </section>
+
+        <!-- Introduction -->
+        <section class="solutions-intro">
+            <div class="intro-container">
+                <h2>O que é a Plataforma ZENT?</h2>
+                <div class="intro-grid">
+                    <div class="intro-text">
+                        <p>
+                            ZENT A.I. é uma plataforma all-in-one construída para centralizar as operações comerciais e de marketing de empresas. Em vez de fragmentar informações em múltiplos softwares desconectados, oferecemos um ecossistema integrado onde cada módulo comunica-se nativamente com os outros.
+                        </p>
+                        <p>
+                            A arquitetura foi desenvolvida para eliminar silos de dados, automatizar processos repetitivos e fornecer inteligência em tempo real sobre o desempenho comercial. Cada ferramenta foi otimizada para funcionar tanto independentemente quanto como parte de um fluxo de trabalho maior.
+                        </p>
+                    </div>
+                    <div>
+                        <ul class="intro-features">
+                            <li>Centralização de leads e clientes em um CRM unificado</li>
+                            <li>Dashboard em tempo real com métricas e KPIs críticos</li>
+                            <li>Automação de fluxos comerciais e marketing</li>
+                            <li>Agente de IA para atendimento e qualificação</li>
+                            <li>Integração nativa com ferramentas existentes</li>
+                            <li>Segurança em nível empresarial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section class="tools-section">
+            <div class="container">
+                <h2>Ferramentas Principais</h2>
+
+                <div class="tools-grid">
+                    <!-- Tool 1: Dashboard -->
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-subtitle">Analytics & Reporting</div>
+                            <h3 class="tool-title">Dashboard Executivo</h3>
+                        </div>
+                        <p class="tool-description">
+                            Painel de controle em tempo real que consolida métricas críticas do negócio. Visualize pipeline, conversões, receita projetada e performance por período em uma interface intuitiva e customizável.
+                        </p>
+                        <ul class="tool-features">
+                            <li>KPIs em tempo real com atualização instantânea</li>
+                            <li>Gráficos interativos e relatórios customizáveis</li>
+                            <li>Análise de funil por estágio e período</li>
+                            <li>Comparativos período a período</li>
+                            <li>Exportação de dados em múltiplos formatos</li>
+                            <li>Alertas automáticos para metas críticas</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tool 2: CRM -->
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-subtitle">Customer Management</div>
+                            <h3 class="tool-title">CRM Omnichannel</h3>
+                        </div>
+                        <p class="tool-description">
+                            Sistema de gerenciamento de relacionamento integrado que centraliza todos os pontos de contato com clientes. Orquestre conversas através de WhatsApp, email, chat e SMS em uma única interface unificada.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Integração nativa com WhatsApp Business API</li>
+                            <li>Histórico completo de interações por contato</li>
+                            <li>Pipeline customizável com Kanban visual</li>
+                            <li>Agenda integrada com Google Calendar</li>
+                            <li>Segmentação e filtros avançados de leads</li>
+                            <li>Automação de fluxos com regras condicionais</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tool 3: Automation -->
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-subtitle">Process Automation</div>
+                            <h3 class="tool-title">Motor de Automação</h3>
+                        </div>
+                        <p class="tool-description">
+                            Plataforma de automação que executa workflows complexos sem intervenção manual. Configure sequências de ações baseadas em eventos, gatilhos e condições para otimizar processos comerciais.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Editor visual de fluxos com lógica condicional</li>
+                            <li>Follow-up automático agendado e inteligente</li>
+                            <li>Disparo automático por inatividade ou evento</li>
+                            <li>Integração com 100+ aplicações terceiras</li>
+                            <li>Logs detalhados de execução e erros</li>
+                            <li>Rate limiting e throttling inteligente</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tool 4: AI Agent -->
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-subtitle">Artificial Intelligence</div>
+                            <h3 class="tool-title">Agente de IA</h3>
+                        </div>
+                        <p class="tool-description">
+                            Agente conversacional baseado em inteligência artificial treinado para atendimento, qualificação de leads e suporte. Opera 24/7 processando linguagem natural e entregando respostas contextualizadas.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Processamento de linguagem natural avançado</li>
+                            <li>Treinamento customizável por negócio e setor</li>
+                            <li>Qualificação automática de leads</li>
+                            <li>Geração de propostas de venda personalizadas</li>
+                            <li>Escalonamento inteligente para humanos</li>
+                            <li>Aprendizado contínuo de interações</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tool 5: Marketing -->
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-subtitle">Campaign Management</div>
+                            <h3 class="tool-title">Planejador de Campanhas</h3>
+                        </div>
+                        <p class="tool-description">
+                            Suite de marketing integrada para planejamento, execução e análise de campanhas multi-canal. Coordene estratégias de redes sociais, email e publicidade em um dashboard centralizado.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Calendário de conteúdo com agendamento automático</li>
+                            <li>Integração com Facebook, Instagram e LinkedIn</li>
+                            <li>Análise de ROI e atribuição por campanha</li>
+                            <li>Segmentação de audiência e targeting</li>
+                            <li>A/B testing de conteúdo e mensagens</li>
+                            <li>Relatórios de performance consolidados</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tool 6: Analytics -->
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-subtitle">Data Intelligence</div>
+                            <h3 class="tool-title">Engine de Análise</h3>
+                        </div>
+                        <p class="tool-description">
+                            Motor analítico que processa grandes volumes de dados transacionais e comportamentais. Gere insights acionáveis através de machine learning e análise preditiva.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Análise preditiva de conversão e churn</li>
+                            <li>Segmentação inteligente de clientes</li>
+                            <li>Previsão de receita com precisão estatística</li>
+                            <li>Identificação de padrões e anomalias</li>
+                            <li>Cálculo automático de LTV e CAC</li>
+                            <li>Recomendações baseadas em dados históricos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities -->
+        <section class="capabilities-section">
+            <div class="container">
+                <h2>Capacidades Fundamentais</h2>
+
+                <div class="capabilities-grid">
+                    <div class="capability-box">
+                        <div class="capability-number">1</div>
+                        <h3 class="capability-title">Consolidação de Dados</h3>
+                        <p class="capability-text">
+                            Centraliza informações de clientes, interações, transações e comportamento em um repositório unificado. Elimina duplicação e inconsistência de dados em toda a organização.
+                        </p>
+                    </div>
+
+                    <div class="capability-box">
+                        <div class="capability-number">2</div>
+                        <h3 class="capability-title">Automação de Processos</h3>
+                        <p class="capability-text">
+                            Executa workflows comerciais automaticamente sem intervenção manual. Reduz erros humanos e libera sua equipe para atividades estratégicas de alto valor.
+                        </p>
+                    </div>
+
+                    <div class="capability-box">
+                        <div class="capability-number">3</div>
+                        <h3 class="capability-title">Inteligência em Tempo Real</h3>
+                        <p class="capability-text">
+                            Fornece visibilidade instantânea sobre performance comercial. Dashboards dinâmicos mostram seu negócio atualizando constantemente sem delay.
+                        </p>
+                    </div>
+
+                    <div class="capability-box">
+                        <div class="capability-number">4</div>
+                        <h3 class="capability-title">Operações 24/7</h3>
+                        <p class="capability-text">
+                            IA e automação trabalham continuamente. Seu negócio qualifica leads, responde clientes e executa processos mesmo fora do horário comercial.
+                        </p>
+                    </div>
+
+                    <div class="capability-box">
+                        <div class="capability-number">5</div>
+                        <h3 class="capability-title">Escalabilidade Modular</h3>
+                        <p class="capability-text">
+                            Comece com funcionalidades essenciais e expanda conforme sua empresa cresce. Arquitetura modular permite ativar novos recursos sob demanda.
+                        </p>
+                    </div>
+
+                    <div class="capability-box">
+                        <div class="capability-number">6</div>
+                        <h3 class="capability-title">Segurança Empresarial</h3>
+                        <p class="capability-text">
+                            Criptografia end-to-end, controle de acesso granular, conformidade com LGPD e auditoria completa de todas as operações e acessos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integrations -->
+        <section class="integrations-section">
+            <div class="container">
+                <h2>Integrações Disponíveis</h2>
+                <p class="integrations-desc">
+                    A plataforma se conecta nativamente com ferramentas populares. Sincronize dados automaticamente e amplíe a funcionalidade através de integrações robustas.
                 </p>
-            </div>
-        </section>
 
-        <!-- O que é ZENT A.I. -->
-        <section style="padding: 80px 20px; background: #f8f9fa;">
-            <div class="container">
-                <div class="section-header text-center" style="margin-bottom: 60px;">
-                    <h2 class="section-title">O que é ZENT A.I.?</h2>
-                </div>
-
-                <div style="max-width: 800px; margin: 0 auto; background: white; padding: 50px 40px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-                    <p style="font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 20px;">
-                        <strong>ZENT A.I. é uma plataforma all-in-one</strong> que une tudo o que você precisa para gerenciar sua empresa: CRM para organizar clientes, dashboard para ver números em tempo real, automações para trabalhar enquanto você dorme, e IA que atende por você.
-                    </p>
-                    <p style="font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 20px;">
-                        Ao invés de usar 5 softwares diferentes (WhatsApp pessoal, planilha, CRM, agenda, e-mail), você tem tudo em um lugar. Seu time trabalha melhor, você vê números reais, e a IA faz as tarefas repetitivas.
-                    </p>
-                    <p style="font-size: 1.05rem; color: #667eea; line-height: 1.8; font-weight: 600;">
-                        Resultado: Mais leads, mais vendas, mais tempo livre.
-                    </p>
+                <div class="integrations-grid">
+                    <div class="integration-item">Google Workspace</div>
+                    <div class="integration-item">Stripe</div>
+                    <div class="integration-item">Notion</div>
+                    <div class="integration-item">Zapier</div>
+                    <div class="integration-item">Slack</div>
+                    <div class="integration-item">Meta Business Suite</div>
+                    <div class="integration-item">Facebook Ads</div>
+                    <div class="integration-item">LinkedIn API</div>
+                    <div class="integration-item">Google Sheets</div>
+                    <div class="integration-item">WhatsApp Business API</div>
+                    <div class="integration-item">Mailchimp</div>
+                    <div class="integration-item">Typeform</div>
                 </div>
             </div>
         </section>
 
-        <!-- O que você consegue fazer -->
-        <section style="padding: 80px 20px;">
+        <!-- Architecture -->
+        <section class="architecture-section">
             <div class="container">
-                <div class="section-header text-center" style="margin-bottom: 60px;">
-                    <h2 class="section-title">O que você consegue fazer</h2>
-                    <p class="section-desc">4 coisas que transformam seu negócio</p>
-                </div>
+                <h2>Arquitetura Técnica</h2>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
-                    <!-- Card 1 -->
-                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
-                        <div style="font-size: 2.5rem; margin-bottom: 20px;">📊</div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Ver seu negócio crescendo em tempo real</h3>
-                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
-                            Dashboard mostra quantos leads você tem, quanto vai faturar e se está no caminho certo. Sem planilhas. Sem contas de cabeça.
+                <div class="architecture-box">
+                    <div class="architecture-item">
+                        <h3 class="architecture-title">Infrastructure</h3>
+                        <p class="architecture-text">
+                            Construída sobre tecnologia cloud escalável com redundância geográfica. Utiliza servidores distribuídos em múltiplas regiões para garantir disponibilidade 99.9% e baixa latência global.
                         </p>
                     </div>
 
-                    <!-- Card 2 -->
-                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
-                        <div style="font-size: 2.5rem; margin-bottom: 20px;">📱</div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Centralizar WhatsApp, email e chat em um lugar</h3>
-                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
-                            Todos os seus clientes em um só CRM. Seu time vê o histórico completo. Ninguém perde mensagem. Tudo organizado.
+                    <div class="architecture-item">
+                        <h3 class="architecture-title">Database</h3>
+                        <p class="architecture-text">
+                            Arquitetura multi-banco otimizada: PostgreSQL para transações, Redis para cache em tempo real, e Elasticsearch para busca avançada. Backups automáticos e recuperação de desastres inclusos.
                         </p>
                     </div>
 
-                    <!-- Card 3 -->
-                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
-                        <div style="font-size: 2.5rem; margin-bottom: 20px;">🤖</div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Deixar a IA responder seus clientes</h3>
-                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
-                            IA responde 24/7. Faz follow-up automático. Qualifica leads. Tudo enquanto você dorme. Sua equipe foca em fechar venda.
+                    <div class="architecture-item">
+                        <h3 class="architecture-title">API</h3>
+                        <p class="architecture-text">
+                            RESTful API completa e bem documentada. Rate limiting inteligente, autenticação OAuth 2.0, e webhooks para integração de terceiros. Suporta 10mil+ requisições por segundo.
                         </p>
                     </div>
 
-                    <!-- Card 4 -->
-                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
-                        <div style="font-size: 2.5rem; margin-bottom: 20px;">📢</div>
-                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Automatizar marketing e vendas</h3>
-                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
-                            Campanhas integradas. Follow-up automático. Redes sociais planejadas. Você define uma vez, o sistema repete todo dia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Como funciona -->
-        <section style="padding: 80px 20px; background: #f8f9fa;">
-            <div class="container">
-                <div class="section-header text-center" style="margin-bottom: 60px;">
-                    <h2 class="section-title">Como funciona na prática</h2>
-                    <p class="section-desc">3 passos simples</p>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
-                    <div style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 700; margin: 0 auto 20px;">
-                            1
-                        </div>
-                        <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #1a202c;">Adicione seus contatos</h3>
-                        <p style="color: #666; line-height: 1.6;">
-                            Importe seus leads e clientes. Pode ser de planilha, outro CRM, ou manualmente. Tudo sincronizado em minutos.
+                    <div class="architecture-item">
+                        <h3 class="architecture-title">Segurança</h3>
+                        <p class="architecture-text">
+                            Criptografia AES-256 em repouso e TLS 1.3 em trânsito. Conformidade com LGPD, GDPR e SOC 2 Type II. Autenticação multi-fator, controle de acesso baseado em funções, e auditoria completa.
                         </p>
                     </div>
 
-                    <div style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 700; margin: 0 auto 20px;">
-                            2
-                        </div>
-                        <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #1a202c;">Configure automações e IA</h3>
-                        <p style="color: #666; line-height: 1.6;">
-                            Escolha quando a IA responde, qual é o follow-up, qual é o pipeline. 5 minutos de config, depois é automático.
+                    <div class="architecture-item">
+                        <h3 class="architecture-title">Performance</h3>
+                        <p class="architecture-text">
+                            Otimizada para velocidade com cache distribuído, CDN global e compressão de dados. Tempo de resposta médio inferior a 200ms para a maioria das operações.
                         </p>
                     </div>
 
-                    <div style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 700; margin: 0 auto 20px;">
-                            3
-                        </div>
-                        <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #1a202c;">Acompanhe resultados</h3>
-                        <p style="color: #666; line-height: 1.6;">
-                            Dashboard em tempo real. Veja quantas vendas você fez, quanto faturou, e qual é o próximo passo de cada cliente.
+                    <div class="architecture-item">
+                        <h3 class="architecture-title">Disponibilidade</h3>
+                        <p class="architecture-text">
+                            Monitoramento 24/7 com alertas proativos. SLA de 99.9% uptime. Failover automático e recuperação de falhas. Manutenção programada com zero downtime.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Números que falam -->
-        <section style="padding: 80px 20px;">
+        <!-- CTA -->
+        <section class="cta-section">
             <div class="container">
-                <div class="section-header text-center" style="margin-bottom: 60px;">
-                    <h2 class="section-title">Por isso empresas usam ZENT</h2>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 900px; margin: 0 auto;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px;">500+</div>
-                        <p style="color: #666; font-size: 0.95rem;">Empresas usando agora</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px;">4.8/5</div>
-                        <p style="color: #666; font-size: 0.95rem;">Avaliação dos usuários</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px;">24/7</div>
-                        <p style="color: #666; font-size: 0.95rem;">IA respondendo leads</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tipos de empresas que usam -->
-        <section style="padding: 80px 20px; background: #f8f9fa;">
-            <div class="container">
-                <div class="section-header text-center" style="margin-bottom: 60px;">
-                    <h2 class="section-title">ZENT funciona para qualquer negócio</h2>
-                    <p class="section-desc">Agências, e-commerce, consultoria, SaaS, imobiliário... Qualquer empresa que vende.</p>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto;">
-                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
-                        <div style="font-size: 1.8rem; margin-bottom: 10px;">🏢</div>
-                        <p style="color: #555; font-weight: 600;">Agências</p>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
-                        <div style="font-size: 1.8rem; margin-bottom: 10px;">🛍️</div>
-                        <p style="color: #555; font-weight: 600;">E-commerce</p>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
-                        <div style="font-size: 1.8rem; margin-bottom: 10px;">💼</div>
-                        <p style="color: #555; font-weight: 600;">Consultoria</p>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
-                        <div style="font-size: 1.8rem; margin-bottom: 10px;">🏠</div>
-                        <p style="color: #555; font-weight: 600;">Imobiliário</p>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
-                        <div style="font-size: 1.8rem; margin-bottom: 10px;">📚</div>
-                        <p style="color: #555; font-weight: 600;">Educação</p>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
-                        <div style="font-size: 1.8rem; margin-bottom: 10px;">⚙️</div>
-                        <p style="color: #555; font-weight: 600;">SaaS</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Final -->
-        <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center;">
-            <div class="container">
-                <h2 style="font-size: 2rem; margin-bottom: 20px; font-weight: 700;">Comece agora gratuitamente</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 40px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Teste todos os recursos. Sem cartão de crédito. Suporte em português durante toda a configuração.
+                <h2>Comece a usar agora</h2>
+                <p>
+                    Acesse todos os recursos da plataforma. Sem cartão de crédito. Suporte técnico completo em português.
                 </p>
-                <a href="index.html#precos" class="btn btn-primary" style="background: white; color: #667eea; font-weight: 600; padding: 15px 40px; font-size: 1.05rem;">
-                    Ver Planos
+                <a href="index.html#precos" class="btn btn-primary" style="background: white; color: #667eea; font-weight: 600; padding: 15px 45px; font-size: 1.05rem;">
+                    Ver Planos e Preços
                 </a>
-            </div>
-        </section>
-
-        <!-- Dúvidas -->
-        <section style="padding: 80px 20px;">
-            <div class="container">
-                <div class="section-header text-center" style="margin-bottom: 60px;">
-                    <h2 class="section-title">Perguntas frequentes</h2>
-                </div>
-
-                <div style="max-width: 700px; margin: 0 auto;">
-                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
-                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Quanto custa?</summary>
-                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
-                            A partir de R$ 197/mês no plano Starter. Cada plano tem recursos diferentes. Veja todos os planos.
-                        </p>
-                    </details>
-
-                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
-                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Preciso de conhecimento técnico?</summary>
-                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
-                            Não. A plataforma é intuitiva. Você consegue usar no dia 1. Nossa equipe ajuda no setup se precisar.
-                        </p>
-                    </details>
-
-                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
-                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Posso integrar com meu sistema?</summary>
-                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
-                            Sim. Integramos com Stripe, Google, Notion, e mais. Temos guias para tudo. Se precisar de ajuda, nossa equipe configura.
-                        </p>
-                    </details>
-
-                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
-                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Posso cancelar quando quiser?</summary>
-                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
-                            Sim. Sem contrato. Sem punição. Cancela quando quiser. Todos os planos incluem suporte durante a configuração.
-                        </p>
-                    </details>
-                </div>
             </div>
         </section>
     </main>
@@ -274,7 +722,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>ZENT A.I.</h4>
-                    <p>Gestão, CRM, automação e IA em um lugar.</p>
+                    <p>Plataforma de gestão tecnológica integrada para empresas.</p>
                 </div>
                 <div class="footer-section">
                     <h5>Produto</h5>
