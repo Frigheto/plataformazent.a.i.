@@ -13,11 +13,19 @@
     'use strict';
 
     // ----------------------------------------------------------------
-    // CREDENCIAIS SUPABASE — substitua com seus valores reais
-    // LOCAL DEVELOPMENT
+    // CREDENCIAIS SUPABASE
+    // Detecta automaticamente entre desenvolvimento local e produção
     // ----------------------------------------------------------------
-    var SUPABASE_URL      = 'http://127.0.0.1:54321';
-    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvaHFqY3NyZ2Z2bG90bmtjbXF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NjY0MjAsImV4cCI6MjA4NzA0MjQyMH0.VinUY79mbTCxulHb6BoXnMPq4Dz1kMYJrgjpOP6aCz4';
+    var isDev = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1';
+
+    var SUPABASE_URL = isDev
+        ? 'http://127.0.0.1:54321'  // LOCAL DEVELOPMENT
+        : 'https://tohqjcsrgfvlotnkcmqy.supabase.co';  // PRODUCTION
+
+    var SUPABASE_ANON_KEY = isDev
+        ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvaHFqY3NyZ2Z2bG90bmtjbXF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NjY0MjAsImV4cCI6MjA4NzA0MjQyMH0.VinUY79mbTCxulHb6BoXnMPq4Dz1kMYJrgjpOP6aCz4'
+        : 'sb_publishable_KNJ58eZVQ2dlelSph-JNhA_6iYaHUbn';
 
     // ----------------------------------------------------------------
     // Inicializa o cliente Supabase (disponível via CDN)

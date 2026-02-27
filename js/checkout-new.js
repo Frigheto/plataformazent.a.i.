@@ -6,8 +6,13 @@
 (function () {
   'use strict';
 
-  // CONFIGURAÇÃO SUPABASE - LOCAL DEVELOPMENT
-  const SUPABASE_URL = 'http://127.0.0.1:54321';
+  // CONFIGURAÇÃO SUPABASE
+  // Detecta automaticamente entre desenvolvimento local e produção
+  const isDev = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1';
+  const SUPABASE_URL = isDev
+      ? 'http://127.0.0.1:54321'  // LOCAL DEVELOPMENT
+      : 'https://tohqjcsrgfvlotnkcmqy.supabase.co';  // PRODUCTION
 
   // Dados dos planos
   const PLANS = {
