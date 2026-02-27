@@ -16,34 +16,40 @@
       price: 'R$ 197',
       features: [
         'Chat conectado na plataforma',
-        'CRM + Google Agenda',
+        'CRM com pipeline visual',
+        'Google Agenda integrada',
         'Dashboard de controle',
         'Até 500 leads',
-        '1 usuário'
+        '1 usuário BÁSICO'
       ]
     },
     basico: {
       label: 'Básico',
       price: 'R$ 397',
       features: [
-        'IA de atendimento',
+        'IA básica de atendimento',
         'Chat conectado na plataforma',
-        'CRM + Google Agenda',
-        'Gerenciamento de redes sociais',
+        'CRM com pipeline visual',
+        'Google Agenda integrada',
+        'Dashboard de controle',
         'Até 1.000 leads',
-        '3 usuários'
+        '2 usuários'
       ]
     },
     profissional: {
       label: 'Profissional',
       price: 'R$ 697',
       features: [
-        'Agente SDR + marketing',
-        'CRM automatizado',
+        'Agente de IA avançado',
+        'Sistema inteligente de follow-up automático (até 7 dias)',
+        'Disparo automático quando o lead não responde',
+        'CRM com pipeline visual automatizado',
         'Google Agenda integrada',
-        'Disparo de mensagens',
         'Planejador de redes sociais',
-        'Até 5.000 leads',
+        'Integrações com Facebook, Instagram e LinkedIn',
+        'App Gerador de Prompt SDR',
+        'Dashboard de controle',
+        'Até 3.000 leads',
         '5 usuários'
       ]
     },
@@ -51,13 +57,18 @@
       label: 'Premium',
       price: 'R$ 997',
       features: [
-        'Agente de IA completo',
-        'CRM automatizado',
+        'Agente de IA avançado + Gerador de Prompt',
+        'CRM com pipeline visual automatizado',
         'Google Agenda integrada',
+        'Dashboard de controle',
         'Disparo de mensagens',
+        'Planejador de redes sociais',
+        'Integração com Stripe',
+        'Integrações com Facebook, Instagram, LinkedIn, Notion e outras sob demanda',
+        'App Gerador de Prompt SDR',
         'Leads ilimitados',
         '10 usuários',
-        'Suporte VIP (1h de call)'
+        'Suporte VIP (1 hora de call estratégica)'
       ]
     }
   };
