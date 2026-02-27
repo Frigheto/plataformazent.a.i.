@@ -27,7 +27,7 @@
       label: 'Básico',
       price: 'R$ 397',
       features: [
-        'IA básica de atendimento',
+        'I.A. para atendimento ao cliente',
         'Omnichannel (integre todos seus canais de atendimento a um lugar só)',
         'CRM com pipeline visual',
         'Google Agenda integrada',
