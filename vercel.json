@@ -1,22 +1,8 @@
 {
   "name": "ZENT A.I.",
   "version": 2,
-  "buildCommand": "echo 'Static site - no build needed'",
+  "buildCommand": "true",
   "outputDirectory": ".",
-  "public": false,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": false
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
