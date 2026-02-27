@@ -4,493 +4,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soluções ZENT A.I. — Gestão Completa do seu Negócio</title>
-    <meta name="description"
-        content="Descubra todas as soluções que a plataforma ZENT A.I. oferece para organizar, automatiazar e escalar seu negócio.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css">
+    <title>O que a ZENT A.I. faz — Plataforma de Gestão</title>
+    <meta name="description" content="Descubra tudo o que a ZENT A.I. é capaz de fazer para seu negócio. Gestão, CRM, automação e IA em um único lugar.">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%232563eb%22/><text y=%22.82em%22 font-size=%2268%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22white%22 x=%2250%22 text-anchor=%22middle%22>Z</text></svg>">
 </head>
 
 <body>
-    <style>
-        .solutions-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .solutions-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .solutions-hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.95;
-            line-height: 1.6;
-        }
-
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-
-        .solution-card {
-            background: white;
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .solution-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
-        }
-
-        .solution-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .solution-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #1a202c;
-        }
-
-        .solution-card p {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-        }
-
-        .solution-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-        }
-
-        .solution-features li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        .solution-features li:before {
-            content: "✓";
-            color: #667eea;
-            font-weight: bold;
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        .section-title-centered {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title-centered h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            color: #1a202c;
-        }
-
-        .section-title-centered p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .solution-details {
-            background: #f8f9fa;
-            padding: 80px 20px;
-            margin-bottom: 60px;
-        }
-
-        .detail-section {
-            max-width: 900px;
-            margin: 0 auto 60px;
-            background: white;
-            padding: 50px 40px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .detail-section h3 {
-            color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .detail-section h3:before {
-            content: "";
-            width: 6px;
-            height: 6px;
-            background: #667eea;
-            border-radius: 50%;
-        }
-
-        .detail-section p {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-            border-radius: 12px;
-            margin: 60px 0;
-        }
-
-        .cta-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-
-        .benefits-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .benefit-item {
-            text-align: left;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid white;
-        }
-
-        .benefit-item h4 {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .benefit-item p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            .solutions-hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .solutions-hero p {
-                font-size: 1rem;
-            }
-
-            .solution-card {
-                padding: 30px 20px;
-            }
-
-            .detail-section {
-                padding: 30px 20px;
-            }
-
-            .section-title-centered h2 {
-                font-size: 1.6rem;
-            }
-        }
-    </style>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <a href="/" class="logo">
-                    <span class="logo-icon">Z</span>
-                    <span class="logo-text">ZENT A.I.</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
+    <!-- Header -->
+    <header>
+        <div class="container flex items-center justify-between">
+            <a href="index.html" class="logo">
+                ZENT <span>A.I.</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="solucoes.html">Soluções</a></li>
+                    <li><a href="index.html#recursos">Recursos</a></li>
                     <li><a href="index.html#precos">Planos</a></li>
                     <li><a href="index.html#depoimentos">Depoimentos</a></li>
-                    <li><a href="index.html#contato">Contato</a></li>
-                    <li><a href="checkout.html?plan=starter" class="btn btn-primary btn-sm">Começar</a></li>
                 </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="index.html#precos" class="btn btn-primary btn-sm">Começar Agora</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <div class="solutions-hero">
-        <div class="container">
-            <h1>Soluções Completas para seu Negócio</h1>
-            <p>Descubra todas as funcionalidades e recursos que a plataforma ZENT A.I. oferece para organizar,
-                automatizar e escalar sua operação comercial e de marketing.</p>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <main class="container" style="padding: 40px 20px;">
-
-        <!-- Solutions Overview -->
-        <div class="section-title-centered">
-            <h2>As 4 Pilares da Plataforma</h2>
-            <p>Tudo integrado para transformar seu negócio em uma máquina de resultados</p>
-        </div>
-
-        <div class="solutions-grid">
-            <!-- Solution 1: Gestão -->
-            <div class="solution-card">
-                <div class="solution-icon">📊</div>
-                <h3>Gestão e Painel de Controle</h3>
-                <p>Tenha visibilidade total do seu negócio em tempo real. Tome decisões estratégicas baseadas em dados
-                    precisos.</p>
-                <ul class="solution-features">
-                    <li>Pipeline visual de vendas</li>
-                    <li>Previsibilidade de faturamento</li>
-                    <li>Relatórios e KPIs em tempo real</li>
-                    <li>Métricas por equipe e período</li>
-                    <li>Análise de performance</li>
-                </ul>
+    <main>
+        <!-- Hero Section -->
+        <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 20px; text-align: center; margin-bottom: 80px;">
+            <div class="container">
+                <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px;">Tudo que você precisa para crescer</h1>
+                <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.95; line-height: 1.6;">
+                    Uma plataforma integrada que centraliza gestão, CRM, marketing, automação e IA. Tudo funcionando junto para você vender mais com menos esforço.
+                </p>
             </div>
+        </section>
 
-            <!-- Solution 2: CRM -->
-            <div class="solution-card">
-                <div class="solution-icon">📱</div>
-                <h3>CRM Inteligente e Omnichannel</h3>
-                <p>Centralize todos os seus canais de atendimento em um único lugar. Nunca mais perca um lead.</p>
-                <ul class="solution-features">
-                    <li>Integração WhatsApp, Email, Chat</li>
-                    <li>Histórico completo de interações</li>
-                    <li>Gerenciamento automático de leads</li>
-                    <li>Pipeline customizável</li>
-                    <li>Integração Google Agenda</li>
-                </ul>
-            </div>
-
-            <!-- Solution 3: Marketing -->
-            <div class="solution-card">
-                <div class="solution-icon">📢</div>
-                <h3>Marketing e Funis Automáticos</h3>
-                <p>Crie campanhas integradas e automáticas. Aumente conversões e reduza custos de aquisição.</p>
-                <ul class="solution-features">
-                    <li>Planejador de redes sociais</li>
-                    <li>Campanhas integradas</li>
-                    <li>Automação de follow-up</li>
-                    <li>Integrações Facebook, Instagram, LinkedIn</li>
-                    <li>Análise de ROI por campanha</li>
-                </ul>
-            </div>
-
-            <!-- Solution 4: IA -->
-            <div class="solution-card">
-                <div class="solution-icon">🤖</div>
-                <h3>IA e Automação Inteligente</h3>
-                <p>Deixe a IA trabalhar para você. Automações inteligentes que funcionam 24/7 sem necessidade de
-                    intervenção.</p>
-                <ul class="solution-features">
-                    <li>Agente de IA para atendimento</li>
-                    <li>Follow-up automático até 7 dias</li>
-                    <li>Disparo automático sem resposta</li>
-                    <li>Gerador de Prompt SDR</li>
-                    <li>Respostas inteligentes por canal</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Detailed Solutions -->
-        <div class="solution-details">
-            <div class="section-title-centered" style="margin-bottom: 40px;">
-                <h2>Tudo o que você Precisa Saber</h2>
-                <p>Entenda cada solução e como ela trabalha para o sucesso do seu negócio</p>
-            </div>
-
-            <!-- Gestão -->
-            <div class="detail-section">
-                <h3>📊 Gestão e Painel de Controle — Visibilidade Total do Negócio</h3>
-                <p>Um dos maiores problemas das empresas em crescimento é não ter visibilidade clara sobre o que está
-                    acontecendo. Com o painel de controle da ZENT A.I., você tem acesso a todas as informações críticas
-                    do seu negócio em tempo real.</p>
-
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <h4>📈 Pipeline Visual</h4>
-                        <p>Visualize todo o funil de vendas. De lead a cliente. Saiba exatamente em que estágio cada
-                            oportunidade está.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>💰 Previsibilidade</h4>
-                        <p>Saiba quanto vai faturar no mês. Projete seu crescimento com precisão baseado em dados
-                            reais.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>📊 Relatórios Automáticos</h4>
-                        <p>KPIs atualizados em tempo real. Sem necessidade de calcular manualmente. Tudo automático.</p>
-                    </div>
+        <!-- O que é ZENT A.I. -->
+        <section style="padding: 80px 20px; background: #f8f9fa;">
+            <div class="container">
+                <div class="section-header text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title">O que é ZENT A.I.?</h2>
                 </div>
 
-                <p><strong>Resultado:</strong> Você toma decisões estratégicas baseado em dados, não em "feeling". Sua
-                    equipe fica alinhada aos objetivos da empresa.</p>
+                <div style="max-width: 800px; margin: 0 auto; background: white; padding: 50px 40px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <p style="font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 20px;">
+                        <strong>ZENT A.I. é uma plataforma all-in-one</strong> que une tudo o que você precisa para gerenciar sua empresa: CRM para organizar clientes, dashboard para ver números em tempo real, automações para trabalhar enquanto você dorme, e IA que atende por você.
+                    </p>
+                    <p style="font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 20px;">
+                        Ao invés de usar 5 softwares diferentes (WhatsApp pessoal, planilha, CRM, agenda, e-mail), você tem tudo em um lugar. Seu time trabalha melhor, você vê números reais, e a IA faz as tarefas repetitivas.
+                    </p>
+                    <p style="font-size: 1.05rem; color: #667eea; line-height: 1.8; font-weight: 600;">
+                        Resultado: Mais leads, mais vendas, mais tempo livre.
+                    </p>
+                </div>
             </div>
+        </section>
 
-            <!-- CRM -->
-            <div class="detail-section">
-                <h3>📱 CRM Inteligente — Centralização Omnichannel</h3>
-                <p>O maior desperdício em empresas é ter informações espalhadas em vários lugares. WhatsApp pessoal,
-                    email, planilhas, post-its... Ninguém sabe qual é a fonte de verdade. A ZENT A.I. centraliza tudo
-                    em um único lugar.</p>
+        <!-- O que você consegue fazer -->
+        <section style="padding: 80px 20px;">
+            <div class="container">
+                <div class="section-header text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title">O que você consegue fazer</h2>
+                    <p class="section-desc">4 coisas que transformam seu negócio</p>
+                </div>
 
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <h4>🔗 Omnichannel Real</h4>
-                        <p>Todos os canais (WhatsApp, Email, Chat, SMS) integrados. Um único lugar para gerenciar tudo.
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+                    <!-- Card 1 -->
+                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
+                        <div style="font-size: 2.5rem; margin-bottom: 20px;">📊</div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Ver seu negócio crescendo em tempo real</h3>
+                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
+                            Dashboard mostra quantos leads você tem, quanto vai faturar e se está no caminho certo. Sem planilhas. Sem contas de cabeça.
                         </p>
                     </div>
-                    <div class="benefit-item">
-                        <h4>📋 Histórico Completo</h4>
-                        <p>Toda interação com o cliente fica registrada. Seu time sempre sabe o último contato e próximo
-                            passo.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>🤝 Qualidade de Leads</h4>
-                        <p>Sistema inteligente que qualifica leads automaticamente. Seu time foca nos prospects com maior
-                            potencial.</p>
-                    </div>
-                </div>
 
-                <p><strong>Resultado:</strong> Nenhum lead se perde. Sua equipe trabalha com informação completa e
-                    histórico disponível. Conversões aumentam automaticamente.</p>
-            </div>
-
-            <!-- Marketing -->
-            <div class="detail-section">
-                <h3>📢 Marketing e Funis Automáticos — Crescimento Previsível</h3>
-                <p>Marketing desconectado do comercial é perda de dinheiro. A ZENT A.I. integra marketing e vendas em
-                    um único funil automático. Crie campanhas que alimentam seu pipeline constantemente.</p>
-
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <h4>🎯 Campanhas Integradas</h4>
-                        <p>Crie campanhas em múltiplos canais (redes sociais, email, SMS) e acompanhe o resultado em um
-                            único lugar.</p>
+                    <!-- Card 2 -->
+                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
+                        <div style="font-size: 2.5rem; margin-bottom: 20px;">📱</div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Centralizar WhatsApp, email e chat em um lugar</h3>
+                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
+                            Todos os seus clientes em um só CRM. Seu time vê o histórico completo. Ninguém perde mensagem. Tudo organizado.
+                        </p>
                     </div>
-                    <div class="benefit-item">
-                        <h4>🔄 Automação de Follow-up</h4>
-                        <p>Sequências automáticas que nutrem leads. Seu time gasta tempo com leads quentes, não com
-                            repetição de tarefas.</p>
+
+                    <!-- Card 3 -->
+                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
+                        <div style="font-size: 2.5rem; margin-bottom: 20px;">🤖</div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Deixar a IA responder seus clientes</h3>
+                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
+                            IA responde 24/7. Faz follow-up automático. Qualifica leads. Tudo enquanto você dorme. Sua equipe foca em fechar venda.
+                        </p>
                     </div>
-                    <div class="benefit-item">
-                        <h4>📊 ROI por Campanha</h4>
-                        <p>Saiba exatamente qual campanha gera mais receita. Invista onde funciona, corte o que não dá
-                            resultado.</p>
+
+                    <!-- Card 4 -->
+                    <div style="background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s;">
+                        <div style="font-size: 2.5rem; margin-bottom: 20px;">📢</div>
+                        <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: #1a202c;">Automatizar marketing e vendas</h3>
+                        <p style="color: #666; line-height: 1.6; font-size: 0.95rem;">
+                            Campanhas integradas. Follow-up automático. Redes sociais planejadas. Você define uma vez, o sistema repete todo dia.
+                        </p>
                     </div>
                 </div>
-
-                <p><strong>Resultado:</strong> Crescimento previsível e escalável. Seu CAC diminui, sua conversão
-                    aumenta, e você tem certeza de qual estratégia funciona.</p>
             </div>
+        </section>
 
-            <!-- IA -->
-            <div class="detail-section">
-                <h3>🤖 IA e Automação Inteligente — Trabalho 24/7 Sem Parar</h3>
-                <p>A IA da ZENT A.I. não é apenas um chatbot. É um agente inteligente que trabalha 24/7 para você,
-                    respondendo clientes, fazendo follow-up automático, e qualificando leads enquanto você dorme.</p>
-
-                <div class="benefits-list">
-                    <div class="benefit-item">
-                        <h4>🤖 Agente IA Treinado</h4>
-                        <p>Especializado em atendimento e vendas. Responde com contexto, conhece sua empresa e seus
-                            processos.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>⏰ Follow-up Automático</h4>
-                        <p>Sistema inteligente que faz follow-up automático até 7 dias. Se o cliente não responde,
-                            dispara automaticamente.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <h4>📝 Gerador de Prompt SDR</h4>
-                        <p>IA que gera automaticamente mensagens personalizadas no estilo SDR (Sales Development
-                            Representative).</p>
-                    </div>
+        <!-- Como funciona -->
+        <section style="padding: 80px 20px; background: #f8f9fa;">
+            <div class="container">
+                <div class="section-header text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title">Como funciona na prática</h2>
+                    <p class="section-desc">3 passos simples</p>
                 </div>
 
-                <p><strong>Resultado:</strong> Sua equipe de vendas trabalha em paralelo com uma IA que nunca se cansa.
-                    Mais leads qualificados, mais conversões, mesma equipe.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 700; margin: 0 auto 20px;">
+                            1
+                        </div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #1a202c;">Adicione seus contatos</h3>
+                        <p style="color: #666; line-height: 1.6;">
+                            Importe seus leads e clientes. Pode ser de planilha, outro CRM, ou manualmente. Tudo sincronizado em minutos.
+                        </p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 700; margin: 0 auto 20px;">
+                            2
+                        </div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #1a202c;">Configure automações e IA</h3>
+                        <p style="color: #666; line-height: 1.6;">
+                            Escolha quando a IA responde, qual é o follow-up, qual é o pipeline. 5 minutos de config, depois é automático.
+                        </p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; font-weight: 700; margin: 0 auto 20px;">
+                            3
+                        </div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #1a202c;">Acompanhe resultados</h3>
+                        <p style="color: #666; line-height: 1.6;">
+                            Dashboard em tempo real. Veja quantas vendas você fez, quanto faturou, e qual é o próximo passo de cada cliente.
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h2>Pronto para Transformar seu Negócio?</h2>
-            <p>Escolha o plano ideal e comece a usar todas essas soluções integradas hoje mesmo</p>
-            <a href="index.html#precos" class="btn btn-primary btn-lg shine-effect"
-                style="background: white; color: #667eea; font-weight: 600;">
-                Ver Planos de Preços
-            </a>
-        </div>
+        <!-- Números que falam -->
+        <section style="padding: 80px 20px;">
+            <div class="container">
+                <div class="section-header text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title">Por isso empresas usam ZENT</h2>
+                </div>
 
-        <!-- FAQ -->
-        <div class="section-title-centered">
-            <h2>Dúvidas Frequentes</h2>
-            <p>Tudo o que você precisa saber sobre nossas soluções</p>
-        </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 900px; margin: 0 auto;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px;">500+</div>
+                        <p style="color: #666; font-size: 0.95rem;">Empresas usando agora</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px;">4.8/5</div>
+                        <p style="color: #666; font-size: 0.95rem;">Avaliação dos usuários</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #667eea; margin-bottom: 10px;">24/7</div>
+                        <p style="color: #666; font-size: 0.95rem;">IA respondendo leads</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div style="max-width: 700px; margin: 40px auto;">
-            <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
-                <summary style="font-weight: 600; color: #667eea;">Preciso de conhecimento técnico para usar?</summary>
-                <p style="margin-top: 15px; color: #555;">Não. A plataforma é intuitiva e foi pensada para qualquer
-                    pessoa usar. Durante o onboarding, nossa equipe te ajuda em cada passo.</p>
-            </details>
+        <!-- Tipos de empresas que usam -->
+        <section style="padding: 80px 20px; background: #f8f9fa;">
+            <div class="container">
+                <div class="section-header text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title">ZENT funciona para qualquer negócio</h2>
+                    <p class="section-desc">Agências, e-commerce, consultoria, SaaS, imobiliário... Qualquer empresa que vende.</p>
+                </div>
 
-            <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
-                <summary style="font-weight: 600; color: #667eea;">Qual a diferença entre os planos?</summary>
-                <p style="margin-top: 15px; color: #555;">Cada plano tem um nível de IA, número de usuários e
-                    integrações diferentes. O plano básico tem IA para atendimento. O profissional tem IA avançada com
-                    automações. O premium tem tudo ilimitado com suporte VIP.</p>
-            </details>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto;">
+                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">🏢</div>
+                        <p style="color: #555; font-weight: 600;">Agências</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">🛍️</div>
+                        <p style="color: #555; font-weight: 600;">E-commerce</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">💼</div>
+                        <p style="color: #555; font-weight: 600;">Consultoria</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">🏠</div>
+                        <p style="color: #555; font-weight: 600;">Imobiliário</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">📚</div>
+                        <p style="color: #555; font-weight: 600;">Educação</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.05);">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">⚙️</div>
+                        <p style="color: #555; font-weight: 600;">SaaS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
-                <summary style="font-weight: 600; color: #667eea;">Posso integrar com meu sistema atual?</summary>
-                <p style="margin-top: 15px; color: #555;">Sim. A ZENT A.I. integra com a maioria dos sistemas (Stripe,
-                    Notion, Google Sheets, etc). Temos uma equipe de integração que ajuda no setup.</p>
-            </details>
+        <!-- CTA Final -->
+        <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center;">
+            <div class="container">
+                <h2 style="font-size: 2rem; margin-bottom: 20px; font-weight: 700;">Comece agora gratuitamente</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 40px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Teste todos os recursos. Sem cartão de crédito. Suporte em português durante toda a configuração.
+                </p>
+                <a href="index.html#precos" class="btn btn-primary" style="background: white; color: #667eea; font-weight: 600; padding: 15px 40px; font-size: 1.05rem;">
+                    Ver Planos
+                </a>
+            </div>
+        </section>
 
-            <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; cursor: pointer;">
-                <summary style="font-weight: 600; color: #667eea;">Qual o tempo de implementação?</summary>
-                <p style="margin-top: 15px; color: #555;">Você começa a usar em minutos. O setup completo com todas as
-                    integrações e customizações leva 1-2 semanas, com suporte da nossa equipe.</p>
-            </details>
-        </div>
+        <!-- Dúvidas -->
+        <section style="padding: 80px 20px;">
+            <div class="container">
+                <div class="section-header text-center" style="margin-bottom: 60px;">
+                    <h2 class="section-title">Perguntas frequentes</h2>
+                </div>
 
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
+                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Quanto custa?</summary>
+                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
+                            A partir de R$ 197/mês no plano Starter. Cada plano tem recursos diferentes. Veja todos os planos.
+                        </p>
+                    </details>
+
+                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
+                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Preciso de conhecimento técnico?</summary>
+                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
+                            Não. A plataforma é intuitiva. Você consegue usar no dia 1. Nossa equipe ajuda no setup se precisar.
+                        </p>
+                    </details>
+
+                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
+                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Posso integrar com meu sistema?</summary>
+                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
+                            Sim. Integramos com Stripe, Google, Notion, e mais. Temos guias para tudo. Se precisar de ajuda, nossa equipe configura.
+                        </p>
+                    </details>
+
+                    <details style="margin-bottom: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; cursor: pointer;">
+                        <summary style="font-weight: 600; color: #1a202c; cursor: pointer;">Posso cancelar quando quiser?</summary>
+                        <p style="margin-top: 15px; color: #666; line-height: 1.6;">
+                            Sim. Sem contrato. Sem punição. Cancela quando quiser. Todos os planos incluem suporte durante a configuração.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -499,7 +274,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>ZENT A.I.</h4>
-                    <p>CRM, marketing, automações e IA em um só lugar.</p>
+                    <p>Gestão, CRM, automação e IA em um lugar.</p>
                 </div>
                 <div class="footer-section">
                     <h5>Produto</h5>
@@ -523,7 +298,6 @@
             </div>
         </div>
     </footer>
-
 </body>
 
 </html>
