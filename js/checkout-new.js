@@ -15,7 +15,7 @@
       label: 'Starter',
       price: 'R$ 197',
       features: [
-        'Chat conectado na plataforma',
+        'Omnichannel (integre todos seus canais de atendimento a um lugar só)',
         'CRM com pipeline visual',
         'Google Agenda integrada',
         'Dashboard de controle',
@@ -28,7 +28,7 @@
       price: 'R$ 397',
       features: [
         'IA básica de atendimento',
-        'Chat conectado na plataforma',
+        'Omnichannel (integre todos seus canais de atendimento a um lugar só)',
         'CRM com pipeline visual',
         'Google Agenda integrada',
         'Dashboard de controle',
