@@ -151,6 +151,30 @@
     }
 
     // ----------------------------------------------------------------
+    // resetPasswordForEmail — envia email de recuperação de senha
+    // ----------------------------------------------------------------
+    async function resetPasswordForEmail(email) {
+        if (!supabase) throw new Error('Supabase não inicializado');
+        var result = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: window.location.origin + '/update-password.html'
+        });
+        if (result.error) throw result.error;
+        return result.data;
+    }
+
+    // ----------------------------------------------------------------
+    // updatePassword — atualiza senha do usuário logado
+    // ----------------------------------------------------------------
+    async function updatePassword(newPassword) {
+        if (!supabase) throw new Error('Supabase não inicializado');
+        var result = await supabase.auth.updateUser({
+            password: newPassword
+        });
+        if (result.error) throw result.error;
+        return result.data;
+    }
+
+    // ----------------------------------------------------------------
     // requireAuth — redireciona para auth.html se não logado
     // Retorna o usuário se logado.
     // ----------------------------------------------------------------
@@ -283,16 +307,18 @@
     // API pública
     // ----------------------------------------------------------------
     window.zentAuth = {
-        getSession:           getSession,
-        getUser:              getUser,
-        getToken:             getToken,
-        getProfile:           getProfile,
-        signUp:               signUp,
-        signIn:               signIn,
-        signOut:              signOut,
-        signInWithGoogle:     signInWithGoogle,
-        requireAuth:          requireAuth,
-        updateHeaderUI:       updateHeaderUI
+        getSession:              getSession,
+        getUser:                 getUser,
+        getToken:                getToken,
+        getProfile:              getProfile,
+        signUp:                  signUp,
+        signIn:                  signIn,
+        signOut:                 signOut,
+        signInWithGoogle:        signInWithGoogle,
+        resetPasswordForEmail:   resetPasswordForEmail,
+        updatePassword:          updatePassword,
+        requireAuth:             requireAuth,
+        updateHeaderUI:          updateHeaderUI
     };
 
 })();
