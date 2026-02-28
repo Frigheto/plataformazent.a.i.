@@ -90,8 +90,10 @@
                     .insert({
                         id: result.data.user.id,
                         email: email,
-                        full_name: name || '',
-                        plan: null
+                        name: name || '',
+                        plan: 'free',
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
                     });
 
                 if (insertResult.error) {
@@ -249,9 +251,52 @@
 
     // ----------------------------------------------------------------
     // Ouve mudanças de sessão (login/logout em outra aba, etc.)
+    // Cria profile automaticamente quando usuário faz login
     // ----------------------------------------------------------------
     if (supabase) {
-        supabase.auth.onAuthStateChange(function (event) {
+        supabase.auth.onAuthStateChange(async function (event, session) {
+            if (event === 'SIGNED_IN' && session && session.user) {
+                // Novo login detectado - criar profile se não existir
+                try {
+                    const user = session.user;
+                    const email = user.email;
+                    const fullName = user.user_metadata?.full_name || email?.split('@')[0] || 'User';
+
+                    console.log('[Auth] Novo login detectado, criando profile para:', user.id);
+
+                    // Verificar se profile já existe
+                    const checkResult = await supabase
+                        .from('profiles')
+                        .select('id')
+                        .eq('id', user.id)
+                        .single();
+
+                    if (checkResult.error && checkResult.error.code === 'PGRST116') {
+                        // Profile não existe, criar novo
+                        const insertResult = await supabase
+                            .from('profiles')
+                            .insert({
+                                id: user.id,
+                                email: email,
+                                name: fullName,
+                                plan: 'free',
+                                created_at: new Date().toISOString(),
+                                updated_at: new Date().toISOString()
+                            });
+
+                        if (insertResult.error) {
+                            console.error('[Auth] Erro ao criar profile:', insertResult.error);
+                        } else {
+                            console.log('[Auth] Profile criado com sucesso');
+                        }
+                    } else {
+                        console.log('[Auth] Profile já existe');
+                    }
+                } catch (err) {
+                    console.error('[Auth] Erro ao processar profile:', err);
+                }
+            }
+
             if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
                 updateHeaderUI();
             }
